@@ -1,0 +1,10 @@
+[
+  {
+    "title": "My Test Post",
+    "content": "This is the body of the test post.",
+    "imageUrl": "uploads/images/test.jpg",
+    "owner": "me@example.com",
+    "id": "1762340825351259",
+    "createdAt": "2025-11-05T11:07:05.351Z"
+  }
+]

@@ -1,0 +1,18 @@
+[
+  {
+    "title": "My Test Post",
+    "content": "This is the body of the test post.",
+    "imageUrl": "uploads/images/test.jpg",
+    "owner": "me@example.com",
+    "id": "1762340684817618",
+    "createdAt": "2025-11-05T11:04:44.817Z"
+  },
+  {
+    "title": "My Test Post",
+    "content": "This is the body of the test post.",
+    "imageUrl": "uploads/images/test.jpg",
+    "owner": "me@example.com",
+    "id": "1762340800474213",
+    "createdAt": "2025-11-05T11:06:40.474Z"
+  }
+]
