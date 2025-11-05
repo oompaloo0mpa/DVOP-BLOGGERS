@@ -1,0 +1,25 @@
+{
+  "name": "dvop-bloggers",
+  "version": "1.0.0",
+  "description": "4.0GPA",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kleavennzc/DVOP-BLOGGERS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kleavennzc/DVOP-BLOGGERS/issues"
+  },
+  "homepage": "https://github.com/kleavennzc/DVOP-BLOGGERS#readme",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "express": "^5.1.0",
+    "fs": "^0.0.1-security"
+  }
+}
