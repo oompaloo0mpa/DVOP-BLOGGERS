@@ -1,7 +1,8 @@
 const { BlogPost } = require('../models/Posts');
 const fs = require('fs').promises; 
 const path = require('path');
-const POSTS_FILE = path.join('utils', 'blogs.json'); 
+// Write posts to `utils/posts.json` so the existing file is updated
+const POSTS_FILE = path.join('utils', 'posts.json'); 
 const TEMPLATE_FILE = path.join('utils', 'blogs.template.json'); 
 
 async function addPost(req, res) { 
