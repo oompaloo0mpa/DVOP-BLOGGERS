@@ -1,0 +1,42 @@
+[
+  {
+    "title": "My Test Post",
+    "content": "This is the body of the test post.",
+    "imageUrl": "uploads/images/test.jpg",
+    "owner": "me@example.com",
+    "id": "1762340684817618",
+    "createdAt": "2025-11-05T11:04:44.817Z"
+  },
+  {
+    "title": "My Test Post",
+    "content": "This is the body of the test post.",
+    "imageUrl": "uploads/images/test.jpg",
+    "owner": "me@example.com",
+    "id": "1762340800474213",
+    "createdAt": "2025-11-05T11:06:40.474Z"
+  },
+  {
+    "title": "test",
+    "content": "test",
+    "imageUrl": "/uploads/images/1763383707672-233922.jpg",
+    "owner": "teste@gmail.com",
+    "id": "1763383707889531",
+    "createdAt": "2025-11-17T12:48:27.889Z"
+  },
+  {
+    "title": "test",
+    "content": "i love kids",
+    "imageUrl": "/uploads/images/1763383780033-319945.webp",
+    "owner": "john@gmail.com",
+    "id": "1763383780042098",
+    "createdAt": "2025-11-17T12:49:40.042Z"
+  },
+  {
+    "title": "top 3 reasons why i hate myself",
+    "content": "tw",
+    "imageUrl": "/uploads/images/1763384023024-589789.png",
+    "owner": "tw@gmail.com",
+    "id": "1763384023080023",
+    "createdAt": "2025-11-17T12:53:43.080Z"
+  }
+]

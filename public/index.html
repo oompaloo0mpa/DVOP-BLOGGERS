@@ -14,3 +14,68 @@
 </body>
 
 </html>
+<!doctype html>
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>DVOP-BLOGGERS - Add Post</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<link rel="stylesheet" href="/css/style.css">
+	</head>
+	<body>
+		<div class="hero">
+			<div class="container">
+				<h1 class="center-text">DVOP-BLOGGERS</h1>
+				<p class="center-text muted">Quick demo — click the button to add a blog post</p>
+			</div>
+		</div>
+
+		<button id="openAddBtn" class="add-btn">Add Post</button>
+
+		<!-- Modal -->
+		<div id="modalBackdrop" class="modal-backdrop" role="dialog" aria-modal="true">
+			<div class="modal" id="addModal">
+				<button class="close-x" id="modalCloseX" aria-label="Close">&times;</button>
+				<h2>Add New Post</h2>
+				<label>Title<br><input id="title" type="text"></label>
+				<label>Content<br><textarea id="content" rows="6"></textarea></label>
+				<label>Owner (email)<br><input id="owner" type="email"></label>
+				<label>Image (optional)<br><input id="imageInput" type="file" accept="image/*"></label>
+				<img id="imagePreview" alt="preview">
+				<div class="actions">
+					<button class="btn gray" id="modalClose">Close</button>
+					<button class="btn primary" id="modalAdd">Add Post</button>
+				</div>
+			</div>
+		</div>
+
+		<div id="notif" class="notif">Post added</div>
+
+		<script src="/js/add-post.js"></script>
+		<script>
+			// Wire modal open/close
+			const openBtn = document.getElementById('openAddBtn');
+			const backdrop = document.getElementById('modalBackdrop');
+			const closeBtn = document.getElementById('modalClose');
+			const closeX = document.getElementById('modalCloseX');
+			const addBtn = document.getElementById('modalAdd');
+
+			function showModal() { backdrop.style.display = 'flex'; }
+			function hideModal() { backdrop.style.display = 'none'; }
+
+			openBtn.addEventListener('click', () => {
+				// reset fields and previewz before opening the thing a 2nd time - matin
+				try { if (typeof resetModalForm === 'function') resetModalForm(); } catch(e){}
+				showModal();
+			});
+			closeBtn.addEventListener('click', () => { hideModal(); });
+			closeX.addEventListener('click', () => { hideModal(); });
+
+			// when user clicks Add Post in modal, call shared addPost()
+			addBtn.addEventListener('click', function () {
+				if (typeof addPost === 'function') addPost();
+			});
+		</script>
+	</body>
+</html>

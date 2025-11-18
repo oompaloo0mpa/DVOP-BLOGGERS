@@ -1,0 +1,131 @@
+/* open to change i js wanted to test smt */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.hero {
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+}
+
+.container {
+    padding: 24px;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.muted {
+    color: #666;
+}
+
+.add-btn {
+    position: fixed;
+    right: 24px;
+    top: 28px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* simple modal */
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.modal {
+    position: relative;
+    background: #fff;
+    width: 420px;
+    max-width: 95%;
+    border-radius: 6px;
+    padding: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    /* allows scrolling wow - matins */
+    max-height: calc(100vh - 80px);
+    overflow: auto;
+}
+
+.modal h2 {
+    margin-top: 0;
+}
+
+.modal label {
+    display: block;
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+.modal input[type="text"],
+.modal input[type="email"],
+.modal textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px;
+}
+
+.modal .actions {
+    margin-top: 12px;
+    text-align: right;
+}
+
+.btn {
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 0;
+    cursor: pointer;
+}
+
+.btn.gray {
+    background: #6c757d;
+    color: #fff;
+}
+
+.btn.primary {
+    background: #007bff;
+    color: #fff;
+}
+
+.close-x {
+    position: absolute;
+    right: 12px;
+    top: 10px;
+    background: transparent;
+    border: 0;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#imagePreview {
+    max-width: 100%;
+    display: block;
+    margin-top: 8px;
+    max-height: 60vh; /* prevent extremely tall images from pushing buttons off-screen */
+    object-fit: contain;
+}
+
+.notif {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background: #28a745;
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 6px;
+    display: none;
+}
