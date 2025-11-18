@@ -4,10 +4,6 @@ var path = require('path');
 var app = express();
 
 
-const PORT = process.env.PORT || 5050
-var startPage = "index.html";
-
-
 const PORT = process.env.PORT || 5050;
 var startPage = "index.html";
 
