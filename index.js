@@ -41,6 +41,9 @@ app.post('/upload', upload.single('image'), (req, res) => {
 const { addPost } = require('./utils/AddPostUtil');
 app.post('/add-post', addPost);
 
+const { editPost } = require('./utils/DaniUtil');
+app.put('/edit-post/:id', editPost); // edited to handle blog posts
+
 // serve the posts.json for frontend to fetch - matinz
 app.get('/utils/posts.json', (req, res) => {
   res.sendFile(path.join(__dirname, 'utils', 'posts.json'));
