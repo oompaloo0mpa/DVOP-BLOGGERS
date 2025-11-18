@@ -12,20 +12,7 @@ app.use(bodyParser.json());
 app.use(express.static("./public"));
 
 
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + "/public/" + startPage);
-})
-
-
-server = app.listen(PORT, function () {
-    const address = server.address();
-    const baseUrl = `http://${address.address == "::" ? 'localhost' :
-        address.address}:${address.port}`;
-    console.log(`Demo project at: ${baseUrl}`);
-});
-
-
-//## ALL THIS STUFF HERE IS THE NEW IMAGE SHIT. TRY NOT TO CHANGE THIS PART. ALSO NPM INSTALL MULTER PLZZZ - matinz
+//## ALL THIS STUFF HERE IS THE NEW IMAGE SHIT. TRY NOT TO CHANGE THIS PART. ALSO NPM INSTALL MULTER PLZZZ - matin**
 // multer to allow file uploading
 const fs = require('fs');
 const multer = require('multer');
