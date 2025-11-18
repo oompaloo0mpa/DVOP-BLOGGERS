@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 app.use(express.static("./public"));
 
 
-//## ALL THIS STUFF HERE IS THE NEW IMAGE SHIT. TRY NOT TO CHANGE THIS PART. ALSO NPM INSTALL MULTER PLZZZ - matinz
+//## ALL THIS STUFF HERE IS THE NEW IMAGE SHIT. TRY NOT TO CHANGE THIS PART. ALSO NPM INSTALL MULTER PLZZZ - matin**
 // multer to allow file uploading
 const fs = require('fs');
 const multer = require('multer');
