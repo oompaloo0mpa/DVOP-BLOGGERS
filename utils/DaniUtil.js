@@ -34,7 +34,7 @@ async function editPost(req, res) {
         };
 
         // Write the updated posts array back to posts.json
-        // Return success response with the updated post
+        // Return success response with the updated posts
         await fs.writeFile(POSTS_FILE, JSON.stringify(posts, null, 2), 'utf8');
         return res.status(200).json({
             message: 'Resource updated successfully!',
