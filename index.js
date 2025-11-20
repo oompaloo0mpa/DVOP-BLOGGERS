@@ -36,7 +36,7 @@ app.post('/upload', upload.single('image'), (req, res) => {
 
 // FEATURE ENDPOINTS
 const { addPost } = require('./utils/AddPostUtil');
-const { viewPost } = require('./utils/ViewPostUtils');
+const { viewPost } = require('./utils/ViewPostUtil');
 
 app.post('/add-post', addPost);
 app.get('/posts/:id', viewPost);
