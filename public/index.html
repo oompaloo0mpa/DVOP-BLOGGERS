@@ -1,81 +1,90 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DVOPS - BLOG APP</title>
+  <meta charset="utf-8">
+  <title>DVOP-BLOGGERS</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    body{font-family:system-ui,Segoe UI,Roboto,Arial;margin:28px}
+    .posts{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+    .card{border:1px solid #e5e7eb;padding:16px;border-radius:8px;cursor:pointer;background:#fff}
+    .card img{max-width:100%;height:160px;object-fit:cover;border-radius:6px;margin-bottom:8px}
+    .meta{color:#6b7280;font-size:0.9rem;margin-bottom:8px}
+    .title{font-size:1.2rem;margin:0 0 8px}
+    /* ensure floating Add FAB fits and looks polished */
+    .add-btn{position:fixed;right:28px;bottom:28px;width:64px;height:64px;border-radius:999px;background:linear-gradient(180deg,#2f7bff,#1e5ae6);color:#fff;border:none;display:inline-flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 18px 40px rgba(31,83,214,0.18);cursor:pointer;transition:transform .12s ease,box-shadow .12s ease}
+    .add-btn:focus{outline:4px solid rgba(36,99,240,0.12);outline-offset:4px}
+    .add-btn .plus{font-weight:700;line-height:1;margin-top:-2px}
+    .add-btn .label{position:absolute;left:9999px;width:1px;height:1px;overflow:hidden} /* visually-hidden label for screen readers */
+    .modal-backdrop{display:none;position:fixed;inset:0;align-items:center;justify-content:center;background:rgba(0,0,0,0.4)}
+    .modal{background:#fff;padding:20px;border-radius:8px;max-width:520px;width:100%;position:relative}
+    .close-x{position:absolute;right:10px;top:8px;border:none;background:transparent;font-size:20px}
+    #imagePreview{max-width:100%;display:none;margin-top:8px}
+  </style>
 </head>
-
 <body>
-    <h1>
-        Welcome to my Blogging App.
-    </h1>
+  <header>
+    <h1>DVOP-BLOGGERS</h1>
+    <p class="muted">Click a widget to open the full post</p>
+  </header>
+
+  <main>
+    <section id="posts" class="posts" aria-live="polite"></section>
+  </main>
+
+  <!-- polished floating Add button (icon-only but accessible) -->
+  <button id="openAddBtn" class="add-btn" aria-label="Add post">
+    <span class="plus">+</span>
+    <span class="label">Add post</span>
+  </button>
+
+  <div id="modalBackdrop" class="modal-backdrop" role="dialog" aria-modal="true">
+    <div class="modal" id="addModal">
+      <button class="close-x btn--icon" id="modalCloseX" aria-label="Close">&times;</button>
+      <h2>Add New Post</h2>
+      <label>Title<br><input id="title" type="text"></label><br>
+      <label>Content<br><textarea id="content" rows="6"></textarea></label><br>
+      <label>Owner (email)<br><input id="owner" type="email"></label><br>
+      <label>Image (optional)<br><input id="imageInput" type="file" accept="image/*"></label><br>
+      <img id="imagePreview" alt="preview">
+      <div style="margin-top:12px;display:flex;gap:10px;justify-content:flex-end">
+        <!-- use the button classes from style.css to get the polished look -->
+        <button id="modalClose" class="btn btn--ghost">Close</button>
+        <button id="modalAdd" class="btn btn--primary">Add Post</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/list.js"></script>
+  <script src="/js/add-post.js"></script>
+  <script>
+    const openBtn = document.getElementById('openAddBtn');
+    const backdrop = document.getElementById('modalBackdrop');
+    const closeBtn = document.getElementById('modalClose');
+    const closeX = document.getElementById('modalCloseX');
+    const addBtn = document.getElementById('modalAdd');
+
+    function showModal(){ backdrop.style.display = 'flex'; document.getElementById('title').focus(); }
+    function hideModal(){ backdrop.style.display = 'none'; }
+
+    openBtn.addEventListener('click', () => {
+      document.getElementById('title').value = '';
+      document.getElementById('content').value = '';
+      document.getElementById('owner').value = '';
+      const imgPreview = document.getElementById('imagePreview'); if (imgPreview) { imgPreview.src=''; imgPreview.style.display='none'; }
+      showModal();
+    });
+    closeBtn.addEventListener('click', hideModal);
+    closeX.addEventListener('click', hideModal);
+
+    addBtn.addEventListener('click', function(){ if (typeof addPost === 'function') addPost(); });
+
+    // close modal on backdrop click
+    backdrop.addEventListener('click', (e) => { if (e.target === backdrop) hideModal(); });
+
+    // keyboard: ESC closes modal
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') hideModal(); });
+  </script>
 </body>
-
-</html>
-<!doctype html>
-<!doctype html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>DVOP-BLOGGERS - Add Post</title>
-		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<link rel="stylesheet" href="/css/style.css">
-	</head>
-	<body>
-		<div class="hero">
-			<div class="container">
-				<h1 class="center-text">DVOP-BLOGGERS</h1>
-				<p class="center-text muted">Quick demo — click the button to add a blog post</p>
-			</div>
-		</div>
-
-		<button id="openAddBtn" class="add-btn">Add Post</button>
-
-		<!-- Modal -->
-		<div id="modalBackdrop" class="modal-backdrop" role="dialog" aria-modal="true">
-			<div class="modal" id="addModal">
-				<button class="close-x" id="modalCloseX" aria-label="Close">&times;</button>
-				<h2>Add New Post</h2>
-				<label>Title<br><input id="title" type="text"></label>
-				<label>Content<br><textarea id="content" rows="6"></textarea></label>
-				<label>Owner (email)<br><input id="owner" type="email"></label>
-				<label>Image (optional)<br><input id="imageInput" type="file" accept="image/*"></label>
-				<img id="imagePreview" alt="preview">
-				<div class="actions">
-					<button class="btn gray" id="modalClose">Close</button>
-					<button class="btn primary" id="modalAdd">Add Post</button>
-				</div>
-			</div>
-		</div>
-
-		<div id="notif" class="notif">Post added</div>
-
-		<script src="/js/add-post.js"></script>
-		<script>
-			// Wire modal open/close
-			const openBtn = document.getElementById('openAddBtn');
-			const backdrop = document.getElementById('modalBackdrop');
-			const closeBtn = document.getElementById('modalClose');
-			const closeX = document.getElementById('modalCloseX');
-			const addBtn = document.getElementById('modalAdd');
-
-			function showModal() { backdrop.style.display = 'flex'; }
-			function hideModal() { backdrop.style.display = 'none'; }
-
-			openBtn.addEventListener('click', () => {
-				// reset fields and previewz before opening the thing a 2nd time - matin
-				try { if (typeof resetModalForm === 'function') resetModalForm(); } catch(e){}
-				showModal();
-			});
-			closeBtn.addEventListener('click', () => { hideModal(); });
-			closeX.addEventListener('click', () => { hideModal(); });
-
-			// when user clicks Add Post in modal, call shared addPost()
-			addBtn.addEventListener('click', function () {
-				if (typeof addPost === 'function') addPost();
-			});
-		</script>
-	</body>
 </html>

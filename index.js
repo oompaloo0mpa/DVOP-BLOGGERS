@@ -36,7 +36,10 @@ app.post('/upload', upload.single('image'), (req, res) => {
 
 // FEATURE ENDPOINTS
 const { addPost } = require('./utils/AddPostUtil');
+const { viewPost } = require('./utils/ViewPostUtils');
+
 app.post('/add-post', addPost);
+app.get('/posts/:id', viewPost);
 
 // Serve JSON files to frontend
 app.get('/utils/posts.json', (req, res) => {
