@@ -1,7 +1,7 @@
 // NEW: addPost - upload image then create blog post
 async function addPost() {
 	var response = "";
-	// collect form values for za new post - matinz
+	// collect form values for za new post - matin
 	var title = document.getElementById("title").value;
 	var content = document.getElementById("content").value;
 	var owner = document.getElementById("owner").value;
