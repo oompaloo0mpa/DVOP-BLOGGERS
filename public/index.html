@@ -13,10 +13,6 @@
     .meta{color:#6b7280;font-size:0.9rem;margin-bottom:8px}
     .title{font-size:1.2rem;margin:0 0 8px}
     /* ensure floating Add FAB fits and looks polished */
-    .add-btn{position:fixed;right:28px;bottom:28px;width:64px;height:64px;border-radius:999px;background:linear-gradient(180deg,#2f7bff,#1e5ae6);color:#fff;border:none;display:inline-flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 18px 40px rgba(31,83,214,0.18);cursor:pointer;transition:transform .12s ease,box-shadow .12s ease}
-    .add-btn:focus{outline:4px solid rgba(36,99,240,0.12);outline-offset:4px}
-    .add-btn .plus{font-weight:700;line-height:1;margin-top:-2px}
-    .add-btn .label{position:absolute;left:9999px;width:1px;height:1px;overflow:hidden} /* visually-hidden label for screen readers */
     .modal-backdrop{display:none;position:fixed;inset:0;align-items:center;justify-content:center;background:rgba(0,0,0,0.4)}
     .modal{background:#fff;padding:20px;border-radius:8px;max-width:520px;width:100%;position:relative}
     .close-x{position:absolute;right:10px;top:8px;border:none;background:transparent;font-size:20px}
@@ -33,11 +29,7 @@
     <section id="posts" class="posts" aria-live="polite"></section>
   </main>
 
-  <!-- polished floating Add button (icon-only but accessible) -->
-  <button id="openAddBtn" class="add-btn" aria-label="Add post">
-    <span class="plus">+</span>
-    <span class="label">Add post</span>
-  </button>
+		<button id="openAddBtn" class="add-btn">Add Post</button> <!-- fixed button - matin -->
 
   <div id="modalBackdrop" class="modal-backdrop" role="dialog" aria-modal="true">
     <div class="modal" id="addModal">

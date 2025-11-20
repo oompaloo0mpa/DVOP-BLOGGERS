@@ -128,28 +128,17 @@ body{
 .btn--icon:hover { background: rgba(15,23,42,0.06); transform: translateY(-1px); }
 .btn--icon:focus { outline: 3px solid rgba(15,23,42,0.06); }
 
-/* Floating Add FAB - refined */
-.add-btn{
-  position:fixed;
-  right:28px;
-  bottom:28px;
-  width:64px;
-  height:64px;
-  border-radius:999px;
-  border:none;
-  background: linear-gradient(180deg, #2f7bff, #1e5ae6);
-  color:#fff;
-  font-size:30px;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  box-shadow: 0 18px 40px rgba(31,83,214,0.18);
-  cursor:pointer;
-  transition: transform .12s ease, box-shadow .12s ease;
+.add-btn {
+    position: fixed;
+    right: 24px;
+    top: 28px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 6px;
+    cursor: pointer;
 }
-.add-btn:hover { transform: translateY(-3px); box-shadow: 0 26px 48px rgba(31,83,214,0.22); }
-.add-btn:active { transform: translateY(0); }
-.add-btn:focus { outline: 4px solid rgba(36,99,240,0.14); outline-offset:3px; }
 
 /* Top-right Edit button style aligns to primary button */
 .edit-btn{
