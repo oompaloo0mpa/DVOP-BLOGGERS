@@ -1,22 +1,22 @@
-var express = require('express');
-var bodyParser = require("body-parser");
-var path = require('path');
-var app = express();
+const express = require('express');
+const bodyParser = require('body-parser');
+const path = require('path');
+const app = express();
 const PORT = process.env.PORT || 5050;
-var startPage = "index.html";
+const startPage = 'index.html';
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static("./public"));
+// CHANGED: USE ABSOLUTE STATIC PATH FOR RELIABILITY
+app.use(express.static(path.join(__dirname, 'public')));
 
-
-//## ALL THIS STUFF HERE IS THE NEW IMAGE SHIT. TRY NOT TO CHANGE THIS PART. ALSO NPM INSTALL MULTER PLZZZ - matin**
-// multer to allow file uploading
+// MULTER IMAGE UPLOAD SETUP
 const fs = require('fs');
 const multer = require('multer');
 // ensure upload dir exists
 const uploadDir = path.join(__dirname, 'public', 'uploads', 'images');
 fs.mkdirSync(uploadDir, { recursive: true });
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, uploadDir),
   filename: (req, file, cb) => {
@@ -27,39 +27,43 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-// upload endpoint to acceptsform-data with 'image' field - matinz
+// upload endpoint to accept form-data with 'image' field
 app.post('/upload', upload.single('image'), (req, res) => {
   if (!req.file) return res.status(400).json({ message: 'No file uploaded' });
   const publicPath = `/uploads/images/${req.file.filename}`;
   return res.status(201).json({ imageUrl: publicPath });
 });
 
-
-//## ALL THIS STUFF HERE IS JS I COPY OF LABSHEETS - matinz
-
-//all the feature endpoints go here - matin
+// FEATURE ENDPOINTS
 const { addPost } = require('./utils/AddPostUtil');
-app.post('/add-post', addPost);
-
+const { viewPost } = require('./utils/ViewPostUtil');
 const { editPost } = require('./utils/DaniUtil');
-app.put('/edit-post/:id', editPost); // edited to handle blog posts
 
 // serve the posts.json for frontend to fetch - matinz
+app.post('/add-post', addPost);
+app.get('/posts/:id', viewPost);
+app.put('/edit-post/:id', editPost); // edited to handle blog posts
+
+// Serve JSON files to frontend
 app.get('/utils/posts.json', (req, res) => {
   res.sendFile(path.join(__dirname, 'utils', 'posts.json'));
 });
+// CHANGED: RETURN THE CORRECT FILE FOR blogs.json
 app.get('/utils/blogs.json', (req, res) => {
-  res.sendFile(path.join(__dirname, 'utils', 'posts.json'));
+  res.sendFile(path.join(__dirname, 'utils', 'blogs.json'));
 });
 
+// Root route
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + "/public/" + startPage);
+  res.sendFile(path.join(__dirname, 'public', startPage));
 });
 
-server = app.listen(PORT, function () {
-  const address = server.address();
-  const baseUrl = `http://${address.address == "::" ? 'localhost' : address.address}:${address.port}`;
+// CHANGED: SINGLE LISTEN CALL; USE this.address() INSIDE CALLBACK TO AVOID UNDEFINED server
+const server = app.listen(PORT, function () {
+  const address = this.address();
+  const host = (address.address === '::') ? 'localhost' : address.address;
+  const baseUrl = `http://${host}:${address.port}`;
   console.log(`Demo project at: ${baseUrl}`);
 });
 
-module.exports = { app, server }
+module.exports = { app, server };

@@ -1,37 +1,40 @@
-const { BlogPost } = require('../models/Posts');
-const fs = require('fs').promises; 
+const fs = require('fs').promises;
 const path = require('path');
-// Write posts to `utils/posts.json` so the existing file is updated
-const POSTS_FILE = path.join('utils', 'posts.json'); 
-const TEMPLATE_FILE = path.join('utils', 'blogs.template.json'); 
 
-async function addPost(req, res) { 
+const FILE = path.join(__dirname, 'posts.json'); // WRITE TO posts.json
+
+async function addPost(req, res) {
+  try {
+    const { title, content, owner, imageUrl } = req.body;
+    if (!title || !content) return res.status(400).json({ message: 'title and content required' });
+
+    let existing = [];
     try {
-        const { title, content, imageUrl, owner } = req.body; // all the post fields - matin
-        const newPost = new BlogPost(title, content, imageUrl, owner); // new blog post - matin
-
-        let posts = []; //holds current posts in the template.json - matin
-        try { 
-            const data = await fs.readFile(POSTS_FILE, 'utf8'); // read posts.json as text - matin
-            posts = JSON.parse(data); // parse JSON into array- matin
-        } catch (err) { //  error handling - matin
-            if (err.code === 'ENOENT') { 
-                const templateData = await fs.readFile(TEMPLATE_FILE, 'utf8'); 
-                posts = JSON.parse(templateData); 
-                await fs.writeFile(POSTS_FILE, JSON.stringify(posts, null, 2), 'utf8');
-            } else { // also error handling- matin
-                throw err;
-            } 
-        }
-
-        posts.push(newPost); // new post to list - matin
-        await fs.writeFile(POSTS_FILE, JSON.stringify(posts, null, 2), 'utf8'); // save updated posts list - matin
-
-        return res.status(201).json(posts);
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json({ message: error.message });
+      const raw = await fs.readFile(FILE, 'utf8');
+      existing = raw ? JSON.parse(raw) : [];
+    } catch (err) {
+      if (err.code !== 'ENOENT') throw err;
+      existing = [];
     }
+
+    const id = Date.now().toString();
+    const newPost = {
+      id,
+      title,
+      content,
+      owner: owner || null,
+      imageUrl: imageUrl || null,
+      createdAt: new Date().toISOString()
+    };
+
+    existing.push(newPost);
+    await fs.writeFile(FILE, JSON.stringify(existing, null, 2), 'utf8');
+
+    return res.status(201).json(newPost);
+  } catch (err) {
+    console.error('addPost error', err);
+    return res.status(500).json({ message: err.message });
+  }
 }
 
 module.exports = { addPost };
