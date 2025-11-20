@@ -1,4 +1,4 @@
-// Function to add a new post - matin
+// NEW: addPost - upload image then create blog post
 async function addPost() {
 	var response = "";
 	// collect form values for za new post - matin
@@ -67,6 +67,9 @@ async function addPost() {
 					} else {
 						alert('Added Post: ' + jsonData.title + '!');
 					}
+
+							// Changed this so it now auto refreshes aft every new uploadz - matin
+							try { if (typeof loadPosts === 'function') loadPosts(); } catch(e) { /* ignore */ }
 				} catch(e) { alert('Added Post: ' + jsonData.title + '!'); }
 			} else {
 				alert('Unable to add post!');
@@ -80,14 +83,22 @@ async function addPost() {
 }
 
 // preview image if they do add smt - matin
+// improved previewImage: uses object URLs, shows the preview element,
+// and revokes previous object URLs to avoid leaks.
 function previewImage(inputId, imgId) {
-	var input = document.getElementById(inputId);
-	var img = document.getElementById(imgId);
+	const input = document.getElementById(inputId);
+	const img = document.getElementById(imgId);
 	if (!input || !img) return;
+	let objectUrl;
 	input.addEventListener('change', function () {
-		var f = input.files[0];
-		if (!f) { img.src = ''; return; }
-		img.src = URL.createObjectURL(f);
+		const f = input.files[0];
+		if (!f) { img.src = ''; img.style.display = 'none'; if (objectUrl) { URL.revokeObjectURL(objectUrl); objectUrl = null; } return; }
+		if (objectUrl) { URL.revokeObjectURL(objectUrl); objectUrl = null; }
+		objectUrl = URL.createObjectURL(f);
+		img.src = objectUrl;
+		img.style.display = 'block';
+		// revoke after the image loads to free memory
+		img.onload = () => { if (objectUrl) { URL.revokeObjectURL(objectUrl); objectUrl = null; } };
 	});
 }
 
@@ -101,7 +112,7 @@ function resetModalForm() {
 		var c = document.getElementById('content'); if (c) c.value = '';
 		var o = document.getElementById('owner'); if (o) o.value = '';
 		var fi = document.getElementById('imageInput'); if (fi) fi.value = null;
-		var prev = document.getElementById('imagePreview'); if (prev) prev.src = '';
+		var prev = document.getElementById('imagePreview'); if (prev) { prev.src = ''; prev.style.display = 'none'; }
 	} catch (e) { console.error('resetModalForm error', e); }
 }
 

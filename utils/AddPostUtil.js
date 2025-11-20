@@ -1,14 +1,11 @@
-const fs = require('fs').promises;
+const { BlogPost } = require('../models/Posts');
+const fs = require('fs').promises; 
 const path = require('path');
+// Write posts to `utils/posts.json` so the existing file is updated
+const POSTS_FILE = path.join('utils', 'posts.json'); 
+const TEMPLATE_FILE = path.join('utils', 'blogs.template.json'); 
 
-const FILE = path.join(__dirname, 'posts.json'); // WRITE TO posts.json
-
-async function addPost(req, res) {
-  try {
-    const { title, content, owner, imageUrl } = req.body;
-    if (!title || !content) return res.status(400).json({ message: 'title and content required' });
-
-    let existing = [];
+async function addPost(req, res) { 
     try {
         const { title, content, imageUrl, owner } = req.body; // all the post fields - matin
         // ERROR HANDLING BACKEND (1), VALIDATION: ensures all za needed fields are there .Return 400 if missing so user knows it's bad input - matin
@@ -50,25 +47,6 @@ async function addPost(req, res) {
         console.error(error);
         return res.status(500).json({ message: error.message });
     }
-
-    const id = Date.now().toString();
-    const newPost = {
-      id,
-      title,
-      content,
-      owner: owner || null,
-      imageUrl: imageUrl || null,
-      createdAt: new Date().toISOString()
-    };
-
-    existing.push(newPost);
-    await fs.writeFile(FILE, JSON.stringify(existing, null, 2), 'utf8');
-
-    return res.status(201).json(newPost);
-  } catch (err) {
-    console.error('addPost error', err);
-    return res.status(500).json({ message: err.message });
-  }
 }
 
 module.exports = { addPost };
