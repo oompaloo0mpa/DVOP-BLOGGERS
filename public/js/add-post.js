@@ -1,107 +1,65 @@
-// NEW: addPost - upload image then create blog post
+// Handles modal form: uploads image (optional) then POSTs JSON to /add-post
+async function uploadImage(file) {
+  const fd = new FormData();
+  fd.append('image', file);
+  const res = await fetch('/upload', { method: 'POST', body: fd });
+  if (!res.ok) throw new Error('Image upload failed');
+  const data = await res.json();
+  return data.imageUrl;
+}
+
 async function addPost() {
-	var response = "";
-	// collect form values for za new post - matinz
-	var title = document.getElementById("title").value;
-	var content = document.getElementById("content").value;
-	var owner = document.getElementById("owner").value;
-	var imageInput = document.getElementById("imageInput"); // file input
+  const title = document.getElementById('title')?.value?.trim();
+  const content = document.getElementById('content')?.value?.trim();
+  const owner = document.getElementById('owner')?.value?.trim();
+  const fileInput = document.getElementById('imageInput');
+  if (!title || !content) {
+    alert('Title and content required');
+    return;
+  }
 
-	// form validation to make sure they cant just submit smt empty - matin
-	if (!title || !content) {
-		alert('Title and content are required!');
-		return;
-	}
-	var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; //form vali for email god bless copilot - matin
-	if (owner && !emailPattern.test(owner)) {
-		alert('Please enter a valid email for owner!');
-		return;
-	}
+  try {
+    let imageUrl = null;
+    if (fileInput && fileInput.files && fileInput.files[0]) {
+      imageUrl = await uploadImage(fileInput.files[0]);
+    }
 
-	try {
-		var imageUrl = null;
-		// uploads file if user selects smt - matin
-		if (imageInput && imageInput.files && imageInput.files.length > 0) {
-			var fd = new FormData();
-			fd.append('image', imageInput.files[0]);
-			var upRes = await fetch('/upload', { method: 'POST', body: fd });
-			var upJson = await upRes.json();
-			if (!upRes.ok) { alert('Image upload failed: ' + (upJson.message || upRes.status)); return; }
-			imageUrl = upJson.imageUrl; // server returns the public path - matin
-		}
+    const res = await fetch('/add-post', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title, content, owner, imageUrl })
+    });
 
-		// creates the post object - matin
-		var jsonData = {
-			title: title,
-			content: content,
-			imageUrl: imageUrl || "",
-			owner: owner || ""
-		};
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.message || 'Failed to add post');
+    }
 
-		// sends allat to add-post - matin
-		var request = new XMLHttpRequest();
-		request.open("POST", "/add-post", true);
-		request.setRequestHeader('Content-Type', 'application/json');
-		request.onload = function () {
-			try { response = JSON.parse(request.responseText); } catch(e) { response = {}; }
-			if (request.status === 201) {
-				// on success: clear fields, closes the popup and shows success notif - matin
-				// clear text fields frm the form so next ppl can add new stuff - matin
-				document.getElementById("title").value = "";
-				document.getElementById("content").value = "";
-				document.getElementById("owner").value = "";
-				// clear file input and preview just like the text fields - matin
-				if (imageInput) {
-					imageInput.value = null;
-					try { var prev = document.getElementById('imagePreview'); if (prev) prev.src = ''; } catch(e){}
-				}
-				// hide modal if available
-				try { if (typeof hideModal === 'function') hideModal(); } catch(e){}
-				// show notification
-				try {
-					var n = document.getElementById('notif');
-					if (n) {
-						n.textContent = 'Post added';
-						n.style.display = 'block';
-						setTimeout(function(){ n.style.display = 'none'; }, 2500);
-					} else {
-						alert('Added Post: ' + jsonData.title + '!');
-					}
-				} catch(e) { alert('Added Post: ' + jsonData.title + '!'); }
-			} else {
-				alert('Unable to add post!');
-			}
-		};
-		request.send(JSON.stringify(jsonData));
-	} catch (err) { //error handling - matin
-		console.error(err);
-		alert('Error: ' + err.message);
-	}
+    const created = await res.json();
+    // close modal if present
+    const backdrop = document.getElementById('modalBackdrop');
+    if (backdrop) backdrop.style.display = 'none';
+    // reload list so new widget appears
+    window.location.href = '/';
+  } catch (e) {
+    console.error(e);
+    alert('Error adding post: ' + e.message);
+  }
 }
 
-// preview image if they do add smt - matin
-function previewImage(inputId, imgId) {
-	var input = document.getElementById(inputId);
-	var img = document.getElementById(imgId);
-	if (!input || !img) return;
-	input.addEventListener('change', function () {
-		var f = input.files[0];
-		if (!f) { img.src = ''; return; }
-		img.src = URL.createObjectURL(f);
-	});
-}
+window.addPost = addPost;
 
-//  Enable preview for the image ^ - matin
-if (document.getElementById('imageInput') && document.getElementById('imagePreview')) previewImage('imageInput','imagePreview');
-
-// Reset modal form (clear inputs + preview). Call before opening modal.
-function resetModalForm() {
-	try {
-		var t = document.getElementById('title'); if (t) t.value = '';
-		var c = document.getElementById('content'); if (c) c.value = '';
-		var o = document.getElementById('owner'); if (o) o.value = '';
-		var fi = document.getElementById('imageInput'); if (fi) fi.value = null;
-		var prev = document.getElementById('imagePreview'); if (prev) prev.src = '';
-	} catch (e) { console.error('resetModalForm error', e); }
-}
-
+// small helper to show image preview if you want
+document.addEventListener('DOMContentLoaded', () => {
+  const imgInput = document.getElementById('imageInput');
+  const imgPreview = document.getElementById('imagePreview');
+  if (imgInput && imgPreview) {
+    imgInput.addEventListener('change', () => {
+      const f = imgInput.files && imgInput.files[0];
+      if (!f) { imgPreview.src = ''; imgPreview.style.display = 'none'; return; }
+      const url = URL.createObjectURL(f);
+      imgPreview.src = url;
+      imgPreview.style.display = 'block';
+    });
+  }
+});

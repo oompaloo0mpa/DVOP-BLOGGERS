@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Post</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <a id="backBtn" class="back" href="/">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Back
+      </a>
+
+      <button id="editBtn" class="edit-btn" aria-label="Edit post">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 21v-3.6L14.6 5.8a1.6 1.6 0 0 1 2.2 0l1.4 1.4a1.6 1.6 0 0 1 0 2.2L6.6 21H3z" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Edit
+      </button>
+    </div>
+
+    <main id="post" class="post-wrap" role="main" aria-live="polite">
+      <!-- populated by /js/post.js -->
+    </main>
+  </div>
+
+  <script src="/js/kleaven.js"></script>
+</body>
+</html>
