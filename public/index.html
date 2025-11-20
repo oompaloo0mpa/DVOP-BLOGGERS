@@ -31,22 +31,23 @@
 
 		<button id="openAddBtn" class="add-btn">Add Post</button> <!-- fixed button - matin -->
 
-  <div id="modalBackdrop" class="modal-backdrop" role="dialog" aria-modal="true">
-    <div class="modal" id="addModal">
-      <button class="close-x btn--icon" id="modalCloseX" aria-label="Close">&times;</button>
-      <h2>Add New Post</h2>
-      <label>Title<br><input id="title" type="text"></label><br>
-      <label>Content<br><textarea id="content" rows="6"></textarea></label><br>
-      <label>Owner (email)<br><input id="owner" type="email"></label><br>
-      <label>Image (optional)<br><input id="imageInput" type="file" accept="image/*"></label><br>
-      <img id="imagePreview" alt="preview">
-      <div style="margin-top:12px;display:flex;gap:10px;justify-content:flex-end">
-        <!-- use the button classes from style.css to get the polished look -->
-        <button id="modalClose" class="btn btn--ghost">Close</button>
-        <button id="modalAdd" class="btn btn--primary">Add Post</button>
-      </div>
-    </div>
-  </div>
+  		<div id="modalBackdrop" class="modal-backdrop" role="dialog" aria-modal="true">
+			<div class="modal" id="addModal">
+				<button class="close-x" id="modalCloseX" aria-label="Close">&times;</button>
+				<h2>Add New Post</h2>
+				<label>Title<br><input id="title" type="text"></label>
+				<label>Content<br><textarea id="content" rows="6"></textarea></label>
+				<label>Owner (email)<br><input id="owner" type="email"></label>
+				<label>Image (optional)<br><input id="imageInput" type="file" accept="image/*"></label>
+				<img id="imagePreview" alt="preview">
+				<div class="actions">
+					<button class="btn gray" id="modalClose">Close</button>
+					<button class="btn primary" id="modalAdd">Add Post</button>
+				</div>
+			</div>
+		</div>
+
+		<div id="notif" class="notif">Post added</div>
 
   <script src="/js/kleaven.js"></script>
   <script src="/js/add-post.js"></script>
