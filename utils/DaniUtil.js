@@ -4,11 +4,35 @@ const POSTS_FILE = path.join('utils', 'posts.json');
 async function editPost(req, res) {
     try {
         const { id } = req.params; // Get the id from the URL
+
+        // If no id is provided, return error
+        if (!id) {
+            return res.status(400).json({ message: 'No Post ID provided' });
+        }
+
         const { title, content, imageUrl } = req.body; // Get updated data from request body
+
+        // If no fields to update are provided, return error
+        if (!title && !content && !imageUrl) {
+            return res.status(400).json({
+                message: 'At least one field must be provided to update.'
+            });
+        }
+
         let posts = []; //holds current posts in the posts.json
         try {
             const data = await fs.readFile(POSTS_FILE, 'utf8'); // read posts.json as text
-            posts = JSON.parse(data); 
+            // posts = JSON.parse(data);
+            try {
+                posts = JSON.parse(data);
+            } catch (parseError) {
+                // Handle JSON parse error
+                console.error('JSON parse error:', parseError);
+                return res.status(500).json({
+                    message: 'Posts file contains invalid JSON data.',
+                    error: parseError.message
+                });
+            }
         } catch (err) {
             // If file doesn't exist, returns error message
             if (err.code === 'ENOENT') {
@@ -21,7 +45,7 @@ async function editPost(req, res) {
         // Find the post by ID, return 404 if not found
         const postId = posts.findIndex(p => p.id == id);
         if (postId === -1) {
-            return res.status(404).json({ message: 'Post not found.' });
+            return res.status(404).json({ message: 'Post with ID (' + id + ') not found.' });
         }
         // Update post fields
         // gets fields from request body and updates only those that are provided
@@ -34,15 +58,29 @@ async function editPost(req, res) {
         };
 
         // Write the updated posts array back to posts.json
-        // Return success response with the updated posts
-        await fs.writeFile(POSTS_FILE, JSON.stringify(posts, null, 2), 'utf8');
+        // Return success response with the updated post
+        try {
+            await fs.writeFile(POSTS_FILE, JSON.stringify(posts, null, 2), 'utf8');
+        } catch (writeError) {
+            // Handle write error
+            console.error('Failed to save updated post:', writeError);
+            return res.status(500).json({
+                message: 'Post was updated but failed to save. Please try again.',
+                error: writeError.message
+            });
+        }
+
         return res.status(200).json({
             message: 'Resource updated successfully!',
             resource: posts[postId]
         });
     } catch (error) {
-        console.error(error);
-        return res.status(500).json({ message: error.message });
+        // Handle unexpected errors
+        console.error('Unexpected error in editPost:', error);
+        return res.status(500).json({
+            message: 'An unexpected error occurred while updating the post.',
+            error: error.message
+        });
     }
 }
 module.exports = { editPost };
