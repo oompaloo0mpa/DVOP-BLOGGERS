@@ -24,14 +24,6 @@
     "createdAt": "2025-11-17T12:48:27.889Z"
   },
   {
-    "title": "test",
-    "content": "i love kids",
-    "imageUrl": "/uploads/images/1763383780033-319945.webp",
-    "owner": "john@gmail.com",
-    "id": "1763383780042098",
-    "createdAt": "2025-11-17T12:49:40.042Z"
-  },
-  {
     "title": "top 3 reasons why i hate myself",
     "content": "tw",
     "imageUrl": "/uploads/images/1763384023024-589789.png",
@@ -58,9 +50,41 @@
   {
     "id": "1763523051450",
     "title": "new post",
-    "content": "fuck you",
+    "content": "love you",
     "owner": "ananana@gmail.com",
     "imageUrl": null,
     "createdAt": "2025-11-19T03:30:51.469Z"
+  },
+  {
+    "title": "5",
+    "content": "e",
+    "imageUrl": "/uploads/images/1763651850944-460205.jpg",
+    "owner": "1@gmail.com",
+    "id": "1763651851014508",
+    "createdAt": "2025-11-20T15:17:31.014Z"
+  },
+  {
+    "title": "i love dvops",
+    "content": "I LOVEEEEE DVOPS",
+    "imageUrl": "/uploads/images/1763651909309-959203.jpg",
+    "owner": "TEST@gmail.com",
+    "id": "1763651909428446",
+    "createdAt": "2025-11-20T15:18:29.428Z"
+  },
+  {
+    "title": "test",
+    "content": "test",
+    "imageUrl": "/uploads/images/1763652754524-780306.jpeg",
+    "owner": "test@gmail.com",
+    "id": "1763652754601574",
+    "createdAt": "2025-11-20T15:32:34.601Z"
+  },
+  {
+    "title": "my goats",
+    "content": "ble able ti to..",
+    "imageUrl": "/uploads/images/1763653567354-675022.jpg",
+    "owner": "matin@gmail.com",
+    "id": "1763653567540944",
+    "createdAt": "2025-11-20T15:46:07.540Z"
   }
 ]
