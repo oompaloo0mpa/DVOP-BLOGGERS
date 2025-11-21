@@ -118,6 +118,10 @@
       display: none;
       margin-top: 8px
     }
+    .modal-backdrop{display:none;position:fixed;inset:0;align-items:center;justify-content:center;background:rgba(0,0,0,0.4)}
+    .modal{background:#fff;padding:20px;border-radius:8px;max-width:520px;width:100%;position:relative}
+    .close-x{position:absolute;right:10px;top:8px;border:none;background:transparent;font-size:20px}
+    #imagePreview{max-width:100%;display:none;margin-top:8px}
   </style>
 </head>
 
@@ -150,36 +154,37 @@
   </div>
 
   <div id="notif" class="notif">Post added</div>
+  <header>
+    <h1>DVOPS-BLOGGERS</h1>
+    <p class="muted">Discuss all matters with your DVOPS friends!</p>
+  </header>
 
   <main>
     <section id="posts" class="posts" aria-live="polite"></section>
   </main>
 
-  <!-- polished floating Add button (icon-only but accessible) -->
-  <button id="openAddBtn" class="add-btn" aria-label="Add post">
-    <span class="plus">+</span>
-    <span class="label">Add post</span>
-  </button>
+		<button id="openAddBtn" class="add-btn">Add Post</button> <!-- fixed button - matin -->
 
-  <div id="modalBackdrop" class="modal-backdrop" role="dialog" aria-modal="true">
-    <div class="modal" id="addModal">
-      <button class="close-x btn--icon" id="modalCloseX" aria-label="Close">&times;</button>
-      <h2>Add New Post</h2>
-      <label>Title<br><input id="title" type="text"></label><br>
-      <label>Content<br><textarea id="content" rows="6"></textarea></label><br>
-      <label>Owner (email)<br><input id="owner" type="email"></label><br>
-      <label>Image (optional)<br><input id="imageInput" type="file" accept="image/*"></label><br>
-      <img id="imagePreview" alt="preview">
-      <div style="margin-top:12px;display:flex;gap:10px;justify-content:flex-end">
-        <!-- use the button classes from style.css to get the polished look -->
-        <button id="modalClose" class="btn btn--ghost">Close</button>
-        <button id="modalAdd" class="btn btn--primary">Add Post</button>
-      </div>
-    </div>
-  </div>
+  		<div id="modalBackdrop" class="modal-backdrop" role="dialog" aria-modal="true">
+			<div class="modal" id="addModal">
+				<button class="close-x" id="modalCloseX" aria-label="Close">&times;</button>
+				<h2>Add New Post</h2>
+				<label>Title<br><input id="title" type="text"></label>
+				<label>Content<br><textarea id="content" rows="6"></textarea></label>
+				<label>Owner (email)<br><input id="owner" type="email"></label>
+				<label>Image (optional)<br><input id="imageInput" type="file" accept="image/*"></label>
+				<img id="imagePreview" alt="preview">
+				<div class="actions">
+					<button class="btn gray" id="modalClose">Close</button>
+					<button class="btn primary" id="modalAdd">Add Post</button>
+				</div>
+			</div>
+		</div>
+
+		<div id="notif" class="notif">Post added</div>
 
   <script src="/js/kleaven.js"></script>
-  <script src="/js/add-post.js"></script>
+  <script src="/js/matin.js"></script>
   <script>
     const openBtn = document.getElementById('openAddBtn');
     const backdrop = document.getElementById('modalBackdrop');

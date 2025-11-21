@@ -97,13 +97,10 @@ function displayLoading(target) {
 async function loadPostPage(){
   const params = new URLSearchParams(location.search);
   const id = params.get('id');
+
+  // If this page doesn't have a target element for the post, do nothing.
   const target = document.getElementById('post');
-  
-  // FRONTEND ERROR HANDLING #1: Missing ID in URL
-  if (!id) { 
-    displayError(target, 'No post ID provided in URL. Please select a post from the homepage.', 'MISSING_ID');
-    return; 
-  }
+  if (!target) return; // <-- safe early exit to avoid the TypeError
 
   // Show loading state
   displayLoading(target);
