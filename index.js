@@ -38,7 +38,7 @@ app.post('/upload', upload.single('image'), (req, res) => {
 //## ALL THIS STUFF HERE IS JS I COPY OF LABSHEETS - matinz
 
 //all the feature endpoints go here - matin
-const { addPost } = require('./utils/AddPostUtil');
+const { addPost } = require('./utils/MatinUtil');
 app.post('/add-post', addPost);
 
 // serve the posts.json for frontend to fetch - matinz
