@@ -4,11 +4,14 @@ const POSTS_FILE = path.join('utils', 'posts.json');
 async function editPost(req, res) {
     try {
         const { id } = req.params; // Get the id from the URL
+        console.log('Post ID:', id, 'id type:', typeof id);
 
         // If no id is provided, return error
         if (!id) {
             return res.status(400).json({ message: 'No Post ID provided' });
         }
+
+        const searchId = String(id).trim();
 
         const { title, content, imageUrl } = req.body; // Get updated data from request body
 
@@ -22,7 +25,6 @@ async function editPost(req, res) {
         let posts = []; //holds current posts in the posts.json
         try {
             const data = await fs.readFile(POSTS_FILE, 'utf8'); // read posts.json as text
-            // posts = JSON.parse(data);
             try {
                 posts = JSON.parse(data);
             } catch (parseError) {
@@ -43,10 +45,12 @@ async function editPost(req, res) {
         }
 
         // Find the post by ID, return 404 if not found
-        const postId = posts.findIndex(p => p.id == id);
+        const postId = posts.findIndex(p => String(p.id).trim() == id);
         if (postId === -1) {
             return res.status(404).json({ message: 'Post with ID (' + id + ') not found.' });
         }
+
+        console.log('Editing post:', posts[postId]);
         // Update post fields
         // gets fields from request body and updates only those that are provided
         // if a field is not provided, it keeps its original value 

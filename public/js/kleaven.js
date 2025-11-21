@@ -159,11 +159,11 @@ async function loadPostPage(){
     `;
 
     // wire edit button
-    const editBtn = document.getElementById('editBtn');
+    const editBtn = document.getElementById('openEditBtn');
     if (editBtn){
       editBtn.onclick = () => {
-        // future: navigate to an edit form; for now show an alert
-        alert('Edit feature coming soon — post id: ' + post.id);
+        editPost(post);
+        console.log('Edit button clicked for post:', post);
       };
     }
 
