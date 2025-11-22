@@ -5,13 +5,11 @@ function editPost(data) {
 
 	const title = document.getElementById('title');
 	const content = document.getElementById('content');
-	const owner = document.getElementById('owner');
 	const imageInput = document.getElementById('imageInput');
 	const imagePreview = document.getElementById('imagePreview');
 
 	if (title) title.value = selectedPost.title || '';
 	if (content) content.value = selectedPost.content || '';
-	if (owner) owner.value = selectedPost.owner || '';
 
 	// file inputs cannot be pre-filled for security; show preview instead
 	if (imagePreview) {
@@ -43,28 +41,20 @@ async function updatePost(id) {
 	// read DOM elements and values first (so validation uses actual values)
 	const titleEl = document.getElementById("title");
 	const contentEl = document.getElementById("content");
-	const ownerEl = document.getElementById("owner");
 	const imageInput = document.getElementById("imageInput");
 
 	const title = titleEl ? titleEl.value.trim() : "";
 	const content = contentEl ? contentEl.value.trim() : "";
-	const owner = ownerEl ? ownerEl.value.trim() : "";
 
 	var jsonData = {
 		title: title,
 		content: content,
-		owner: owner,
 		imageInput: imageInput ? imageInput.value : ""
 	};
 
 	// form validation to make sure they cant just submit smt empty - matin
 	if (!title || !content) {
 		alert('Title and content are required!');
-		return;
-	}
-	var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; //form vali for email god bless copilot - matin
-	if (owner && !emailPattern.test(owner)) {
-		alert('Please enter a valid email for owner!');
 		return;
 	}
 
@@ -91,7 +81,6 @@ async function updatePost(id) {
 				// clear text fields frm the form so next ppl can add new stuff - matin
 				document.getElementById("title").value = "";
 				document.getElementById("content").value = "";
-				document.getElementById("owner").value = "";
 				// clear file input and preview just like the text fields - matin
 				if (imageInput) {
 					imageInput.value = null;

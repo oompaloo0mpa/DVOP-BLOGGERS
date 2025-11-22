@@ -1,47 +1,47 @@
 [
   {
     "title": "Prism 50-inch TV",
-    "content": "Blk 3 Lvl 5 Rm 1",
+    "content": "New Product that I got!!",
     "imageUrl": "Purchased for XYZ Exhibition",
     "owner": "me@example.com",
     "id": "1762340684817618",
     "createdAt": "2025-11-05T11:04:44.817Z"
   },
   {
-    "title": "My Test Post",
-    "content": "This is the body of the test post.",
+    "title": "Why Minimalism Improves Mental Health",
+    "content": "Decluttering your space reduces stress and helps you focus on what truly matters in life.",
     "imageUrl": "uploads/images/test.jpg",
     "owner": "me@example.com",
     "id": "1762340800474213",
     "createdAt": "2025-11-05T11:06:40.474Z"
   },
   {
-    "title": "test",
-    "content": "test",
+    "title": "Cloud Computing Made Simple",
+    "content": "Cloud services let you store, scale, and access data anywhere. Flexibility and cost savings drive adoption.",
     "imageUrl": "/uploads/images/1763383707672-233922.jpg",
     "owner": "teste@gmail.com",
     "id": "1763383707889531",
     "createdAt": "2025-11-17T12:48:27.889Z"
   },
   {
-    "title": "top 3 reasons why i hate myself",
-    "content": "tw",
+    "title": "Eco-Friendly Home Hacks",
+    "content": "Switch to LED lights, recycle consistently, and use water-saving fixtures to reduce your footprint",
     "imageUrl": "/uploads/images/1763384023024-589789.png",
     "owner": "tw@gmail.com",
     "id": "1763384023080023",
     "createdAt": "2025-11-17T12:53:43.080Z"
   },
   {
-    "title": "title",
-    "content": "hihihihihi",
+    "title": "Mastering Time Management in College",
+    "content": "Use planners, set priorities, and avoid multitasking. Smart scheduling keeps stress low and grades high.",
     "imageUrl": "/uploads/images/1763435012869-422470.png",
     "owner": "pepe@gmail.com",
     "id": "1763435012933442",
     "createdAt": "2025-11-18T03:03:32.933Z"
   },
   {
-    "title": "q",
-    "content": "q",
+    "title": "Top 5 Travel Destinations for 2025",
+    "content": "From Kyoto’s temples to Iceland’s glaciers, these spots promise unforgettable adventures and cultural immersion.",
     "imageUrl": "",
     "owner": "qq@gmail.com",
     "id": "1763435059140609",
@@ -49,42 +49,66 @@
   },
   {
     "id": "1763523051450",
-    "title": "new post",
-    "content": "love you",
+    "title": "Morning Routines That Boost Productivity",
+    "content": "Start your day with meditation, a quick workout, and a clear to-do list. Small habits create big results.",
     "owner": "ananana@gmail.com",
     "imageUrl": null,
     "createdAt": "2025-11-19T03:30:51.469Z"
   },
   {
-    "title": "5",
-    "content": "e",
+    "title": "AI Tools Every Student Should Try",
+    "content": "From note summarizers to coding assistants, AI is transforming how students learn and work.",
     "imageUrl": "/uploads/images/1763651850944-460205.jpg",
     "owner": "1@gmail.com",
     "id": "1763651851014508",
     "createdAt": "2025-11-20T15:17:31.014Z"
   },
   {
-    "title": "i love dvops",
-    "content": "I LOVEEEEE DVOPS",
+    "title": "Simple Tips for Better Sleep",
+    "content": "Avoid screens before bed, keep a consistent schedule, and create a calming nighttime routine.",
     "imageUrl": "/uploads/images/1763651909309-959203.jpg",
     "owner": "TEST@gmail.com",
     "id": "1763651909428446",
     "createdAt": "2025-11-20T15:18:29.428Z"
   },
   {
-    "title": "test22",
-    "content": "test",
+    "title": "The Rise of Plant-Based Diets",
+    "content": "More people are choosing plant-based meals for health and sustainability. It’s a growing global trend.",
     "imageUrl": "/uploads/images/1763652754524-780306.jpeg",
     "owner": "test@gmail.com",
     "id": "1763652754601574",
     "createdAt": "2025-11-20T15:32:34.601Z"
   },
   {
-    "title": "my goats",
-    "content": "ble able ti to..",
+    "title": "How to Stay Motivated While Studying",
+    "content": "Break tasks into chunks, reward progress, and study with peers to keep energy high.",
     "imageUrl": "/uploads/images/1763653567354-675022.jpg",
     "owner": "matin@gmail.com",
     "id": "1763653567540944",
     "createdAt": "2025-11-20T15:46:07.540Z"
+  },
+  {
+    "title": "Beginner’s Guide to REST APIs",
+    "content": "APIs connect apps seamlessly. Learn endpoints, requests, and responses to build smarter web projects.",
+    "imageUrl": "",
+    "owner": "user1@gmail.com",
+    "id": "1763791155918909",
+    "createdAt": "2025-11-22T05:59:15.921Z"
+  },
+  {
+    "title": "UX Design Principles You Can’t Ignore",
+    "content": "Clear navigation, consistent visuals, and empathy for users make interfaces intuitive and engaging.",
+    "imageUrl": "",
+    "owner": "UXuser2@gmail.com",
+    "id": "1763791201798922",
+    "createdAt": "2025-11-22T06:00:01.798Z"
+  },
+  {
+    "title": "Top Cybersecurity Habits for Students",
+    "content": "Use strong passwords, enable 2FA, and avoid suspicious links. Small steps protect big data.",
+    "imageUrl": "",
+    "owner": "secUser@gmail.com",
+    "id": "1763791317139872",
+    "createdAt": "2025-11-22T06:01:57.139Z"
   }
 ]
