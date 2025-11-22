@@ -53,9 +53,76 @@
 
   </div>
 
+  <!-- Image lightbox for viewing full-size post images - matin -->
+  <div id="imageLightbox" class="image-lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="lightbox-inner">
+      <button class="close-x" id="lightboxClose" aria-label="Close full image">&times;</button>
+      <img id="lightboxImg" alt="Full post image">
+    </div>
+  </div>
+
   <script src="/js/kleaven.js"></script>
   <script src="/js/matin.js"></script>
   <script src="/js/dani.js"></script>
+
+  <script>
+    // Show a "View full image" button for the post image and open a lightbox on click. - matinz
+    (function () {
+      const postRoot = document.getElementById('post');
+      const lightbox = document.getElementById('imageLightbox');
+      const lightboxImg = document.getElementById('lightboxImg');
+      const lightboxClose = document.getElementById('lightboxClose');
+
+      function openLightbox(src, alt) {
+        lightboxImg.src = src || '';
+        lightboxImg.alt = alt || 'Full image';
+        lightbox.style.display = 'flex';
+        lightbox.setAttribute('aria-hidden', 'false');
+      }
+
+      function closeLightbox() {
+        lightbox.style.display = 'none';
+        lightbox.setAttribute('aria-hidden', 'true');
+        lightboxImg.src = '';
+      }
+
+      lightboxClose.addEventListener('click', closeLightbox);
+      lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+
+      // When the post content changes, look for an image and attach a view button.
+      const obs = new MutationObserver(() => {
+        const img = postRoot.querySelector('.post-image');
+        if (!img) return;
+        // avoid adding multiple buttons
+        if (postRoot.querySelector('.view-full-btn')) return;
+
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'view-full-btn btn gray';
+        btn.textContent = 'View full image';
+        btn.addEventListener('click', () => openLightbox(img.src, img.alt));
+
+        // place the button immediately after the image
+        img.insertAdjacentElement('afterend', btn);
+      });
+
+      obs.observe(postRoot, { childList: true, subtree: true });
+
+      // also attempt once on load in case content already present
+      window.addEventListener('load', () => {
+        const img = postRoot.querySelector('.post-image');
+        if (img && !postRoot.querySelector('.view-full-btn')) {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'view-full-btn btn gray';
+          btn.textContent = 'View full image';
+          btn.addEventListener('click', () => openLightbox(img.src, img.alt));
+          img.insertAdjacentElement('afterend', btn);
+        }
+      });
+    })();
+  </script>
 
   <script>
     const openBtn = document.getElementById('openEditBtn');
