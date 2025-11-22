@@ -11,7 +11,7 @@ function editPost(data) {
 	if (title) title.value = selectedPost.title || '';
 	if (content) content.value = selectedPost.content || '';
 
-	// file inputs cannot be pre-filled for security; show preview instead
+	// show preview if imageUrl exists
 	if (imagePreview) {
 		imagePreview.src = selectedPost.imageUrl || '';
 		imagePreview.style.display = selectedPost.imageUrl ? 'block' : 'none';
