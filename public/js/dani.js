@@ -52,15 +52,14 @@ async function updatePost(id) {
 		imageInput: imageInput ? imageInput.value : ""
 	};
 
-	// form validation to make sure they cant just submit smt empty - matin
 	if (!title || !content) {
 		alert('Title and content are required!');
 		return;
 	}
 
 	try {
+		// uses matin code to upload image first if a new image is selected
 		var imageUrl = null;
-		// uploads file if user selects smt - matin
 		if (imageInput && imageInput.files && imageInput.files.length > 0) {
 			var fd = new FormData();
 			fd.append('image', imageInput.files[0]);
@@ -70,18 +69,14 @@ async function updatePost(id) {
 			imageUrl = upJson.imageUrl; // server returns the public path - matin
 		}
 
-		// sends allat to add-post - matin
 		var request = new XMLHttpRequest();
 		request.open("PUT", "/edit-post/" + id, true);
 		request.setRequestHeader('Content-Type', 'application/json');
 		request.onload = function () {
 			try { response = JSON.parse(request.responseText); } catch (e) { response = {}; }
 			if (request.status === 200) {
-				// on success: clear fields, closes the popup and shows success notif - matin
-				// clear text fields frm the form so next ppl can add new stuff - matin
 				document.getElementById("title").value = "";
 				document.getElementById("content").value = "";
-				// clear file input and preview just like the text fields - matin
 				if (imageInput) {
 					imageInput.value = null;
 					try { var prev = document.getElementById('imagePreview'); if (prev) prev.src = ''; } catch (e) { }
@@ -108,7 +103,8 @@ async function updatePost(id) {
 		};
 		request.send(JSON.stringify(jsonData));
 
-	} catch (err) { //error handling - matin
+	} catch (err) { 
+		// log error and alert user
 		console.error(err);
 		alert('Unable to edit post: ' + err.message);
 	}
