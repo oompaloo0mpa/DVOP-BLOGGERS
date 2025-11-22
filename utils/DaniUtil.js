@@ -4,7 +4,6 @@ const POSTS_FILE = path.join('utils', 'posts.json');
 async function editPost(req, res) {
     try {
         const { id } = req.params; // Get the id from the URL
-        console.log('Post ID:', id, 'id type:', typeof id);
 
         // If no id is provided, return error
         if (!id) {
@@ -50,7 +49,6 @@ async function editPost(req, res) {
             return res.status(404).json({ message: 'Post with ID (' + id + ') not found.' });
         }
 
-        console.log('Editing post:', posts[postId]);
         // Update post fields
         // gets fields from request body and updates only those that are provided
         // if a field is not provided, it keeps its original value 
