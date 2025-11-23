@@ -74,7 +74,7 @@
   {
     "title": "The Rise of Plant-Based Diets",
     "content": "More people are choosing plant-based meals for health and sustainability. It’s a growing global trend.",
-    "imageUrl": "/uploads/images/1763652754524-780306.jpeg",
+    "imageUrl": "/uploads/images/1763889702481-388843.png",
     "owner": "test@gmail.com",
     "id": "1763652754601574",
     "createdAt": "2025-11-20T15:32:34.601Z"
@@ -82,7 +82,7 @@
   {
     "title": "How to Stay Motivated While Studying",
     "content": "Break tasks into chunks, reward progress, and study with peers to keep energy high.",
-    "imageUrl": "/uploads/images/1763653567354-675022.jpg",
+    "imageUrl": "/uploads/images/1763893722882-470950.jpeg",
     "owner": "matin@gmail.com",
     "id": "1763653567540944",
     "createdAt": "2025-11-20T15:46:07.540Z"
@@ -118,5 +118,13 @@
     "owner": "hero@gmail.com",
     "id": "1763837061659271",
     "createdAt": "2025-11-22T18:44:21.659Z"
+  },
+  {
+    "title": "I took dvops. This is how i did it.",
+    "content": "I went to class on time, did my work and went home. Dont waste time on other things, lock in on the grind and aim for a good grade.",
+    "imageUrl": "/uploads/images/1763893782756-355202.png",
+    "owner": "student@gmail.com",
+    "id": "1763893782776400",
+    "createdAt": "2025-11-23T10:29:42.776Z"
   }
 ]
