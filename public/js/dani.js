@@ -49,7 +49,8 @@ async function updatePost(id) {
 	var jsonData = {
 		title: title,
 		content: content,
-		imageInput: imageInput ? imageInput.value : ""
+		imageInput: imageInput ? imageInput.value : "",
+		imageUrl: ''
 	};
 
 	if (!title || !content) {
@@ -68,7 +69,9 @@ async function updatePost(id) {
 			if (!upRes.ok) { alert('Image upload failed: ' + (upJson.message || upRes.status)); return; }
 			imageUrl = upJson.imageUrl; // server returns the public path - matin
 		}
+		jsonData.imageUrl = imageUrl || "";
 
+		// sends updated data to edit-post endpoint
 		var request = new XMLHttpRequest();
 		request.open("PUT", "/edit-post/" + id, true);
 		request.setRequestHeader('Content-Type', 'application/json');
