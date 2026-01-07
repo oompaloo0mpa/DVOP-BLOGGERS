@@ -140,3 +140,10 @@ vite.config.ts.timestamp-*
 
 # JSON data files
 utils/resources.json
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
