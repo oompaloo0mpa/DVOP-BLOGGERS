@@ -5,11 +5,14 @@ jest.mock('fs', () => ({
         readFile: jest.fn(),
         writeFile: jest.fn(),
         rename: jest.fn(),
-    }
+    }, mkdirSync: jest.fn(), // mock mkdirSync used by index.js to create upload dir
 }));
 
 const fs = require('fs').promises;
 const { addPost } = require('../utils/MatinUtil');
+
+const request = require('supertest'); // supertest for api-style requests
+const { app, server } = require('../index'); // import express app and server for api tests
 
 describe('Unit Tests for Utils', () => {
     // Reset mocks before each test to avoid "leaking" state between tests
@@ -93,4 +96,6 @@ describe('Unit Tests for Utils', () => {
         expect(res.status).toHaveBeenCalledWith(400); // validation should trigger 400
         expect(fs.writeFile).not.toHaveBeenCalled(); // no writes when validation fails
     });
+
+    afterAll(() => { if (server && server.close) server.close(); }); // ensure server closed to avoid logs after tests finish
 });
