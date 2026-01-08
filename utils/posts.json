@@ -1,154 +1,98 @@
 [
   {
-    "title": "Prism 50-inch TV",
-    "content": "New Product that I got!!",
-    "imageUrl": "/uploads/images/1763877033261-777810.webp",
-    "owner": "me@example.com",
-    "id": "1762340684817618",
-    "createdAt": "2025-11-05T11:04:44.817Z"
+    "id": "p-chromium-1",
+    "title": "sample post 1 - chromium",
+    "content": "sample content 1",
+    "imageUrl": "/uploads/images/sample1.png",
+    "owner": "admin@example.com",
+    "createdAt": "2026-01-08T16:15:18.926Z"
   },
   {
-    "title": "Why Minimalism Improves Mental Health",
-    "content": "Decluttering your space reduces stress and helps you focus on what truly matters in life.",
-    "imageUrl": "uploads/images/test.jpg",
-    "owner": "me@example.com",
-    "id": "1762340800474213",
-    "createdAt": "2025-11-05T11:06:40.474Z"
+    "id": "p-chromium-2",
+    "title": "sample post 2 - chromium",
+    "content": "sample content 2",
+    "imageUrl": "/uploads/images/sample2.png",
+    "owner": "admin@example.com",
+    "createdAt": "2026-01-08T16:15:18.928Z"
   },
   {
-    "title": "Cloud Computing Made Simple",
-    "content": "Cloud services let you store, scale, and access data anywhere. Flexibility and cost savings drive adoption.",
-    "imageUrl": "/uploads/images/1763383707672-233922.jpg",
-    "owner": "teste@gmail.com",
-    "id": "1763383707889531",
-    "createdAt": "2025-11-17T12:48:27.889Z"
+    "id": "p-firefox-1",
+    "title": "sample post 1 - firefox",
+    "content": "sample content 1",
+    "imageUrl": "/uploads/images/sample1.png",
+    "owner": "admin@example.com",
+    "createdAt": "2026-01-08T16:15:18.928Z"
   },
   {
-    "title": "Eco-Friendly Home Hacks",
-    "content": "Switch to LED lights, recycle consistently, and use water-saving fixtures to reduce your footprint",
-    "imageUrl": "/uploads/images/1763384023024-589789.png",
-    "owner": "tw@gmail.com",
-    "id": "1763384023080023",
-    "createdAt": "2025-11-17T12:53:43.080Z"
+    "id": "p-firefox-2",
+    "title": "sample post 2 - firefox",
+    "content": "sample content 2",
+    "imageUrl": "/uploads/images/sample2.png",
+    "owner": "admin@example.com",
+    "createdAt": "2026-01-08T16:15:18.928Z"
   },
   {
-    "title": "Mastering Time Management in College",
-    "content": "Use planners, set priorities, and avoid multitasking. Smart scheduling keeps stress low and grades high.",
-    "imageUrl": "/uploads/images/1763435012869-422470.png",
-    "owner": "pepe@gmail.com",
-    "id": "1763435012933442",
-    "createdAt": "2025-11-18T03:03:32.933Z"
+    "id": "p-webkit-1",
+    "title": "sample post 1 - webkit",
+    "content": "sample content 1",
+    "imageUrl": "/uploads/images/sample1.png",
+    "owner": "admin@example.com",
+    "createdAt": "2026-01-08T16:15:18.928Z"
   },
   {
-    "title": "Top 5 Travel Destinations for 2025",
-    "content": "From Kyoto’s temples to Iceland’s glaciers, these spots promise unforgettable adventures and cultural immersion.",
-    "imageUrl": "",
-    "owner": "qq@gmail.com",
-    "id": "1763435059140609",
-    "createdAt": "2025-11-18T03:04:19.140Z"
+    "id": "p-webkit-2",
+    "title": "sample post 2 - webkit",
+    "content": "sample content 2",
+    "imageUrl": "/uploads/images/sample2.png",
+    "owner": "admin@example.com",
+    "createdAt": "2026-01-08T16:15:18.928Z"
   },
   {
-    "id": "1763523051450",
-    "title": "Morning Routines That Boost Productivity",
-    "content": "Start your day with meditation, a quick workout, and a clear to-do list. Small habits create big results.",
-    "owner": "ananana@gmail.com",
-    "imageUrl": null,
-    "createdAt": "2025-11-19T03:30:51.469Z"
+    "title": "e2e post - firefox",
+    "content": "created by playwright e2e test",
+    "imageUrl": "/uploads/images/e2e.png",
+    "owner": "e2e@example.com",
+    "id": "1767888918949223",
+    "createdAt": "2026-01-08T16:15:18.949Z"
   },
   {
-    "title": "AI Tools Every Student Should Try",
-    "content": "From note summarizers to coding assistants, AI is transforming how students learn and work.",
-    "imageUrl": "/uploads/images/1763651850944-460205.jpg",
-    "owner": "1@gmail.com",
-    "id": "1763651851014508",
-    "createdAt": "2025-11-20T15:17:31.014Z"
+    "title": "e2e post - chromium",
+    "content": "created by playwright e2e test",
+    "imageUrl": "/uploads/images/e2e.png",
+    "owner": "e2e@example.com",
+    "id": "1767888919016996",
+    "createdAt": "2026-01-08T16:15:19.016Z"
   },
   {
-    "title": "Simple Tips for Better Sleep",
-    "content": "Avoid screens before bed, keep a consistent schedule, and create a calming nighttime routine.",
-    "imageUrl": "/uploads/images/1763651909309-959203.jpg",
-    "owner": "TEST@gmail.com",
-    "id": "1763651909428446",
-    "createdAt": "2025-11-20T15:18:29.428Z"
+    "title": "e2e post - webkit",
+    "content": "created by playwright e2e test",
+    "imageUrl": "/uploads/images/e2e.png",
+    "owner": "e2e@example.com",
+    "id": "1767888919028394",
+    "createdAt": "2026-01-08T16:15:19.028Z"
   },
   {
-    "title": "The Rise of Plant-Based Diets",
-    "content": "More people are choosing plant-based meals for health and sustainability. It’s a growing global trend.",
-    "imageUrl": "/uploads/images/1763889702481-388843.png",
-    "owner": "test@gmail.com",
-    "id": "1763652754601574",
-    "createdAt": "2025-11-20T15:32:34.601Z"
+    "title": "e2e ui post - webkit",
+    "content": "created by playwright ui test",
+    "imageUrl": "/uploads/images/1767888923063-868640.png",
+    "owner": "ui@example.com",
+    "id": "1767888923087455",
+    "createdAt": "2026-01-08T16:15:23.087Z"
   },
   {
-    "title": "How to Stay Motivated While Studying",
-    "content": "Break tasks into chunks, reward progress, and study with peers to keep energy high.",
-    "imageUrl": "/uploads/images/1763893722882-470950.jpeg",
-    "owner": "matin@gmail.com",
-    "id": "1763653567540944",
-    "createdAt": "2025-11-20T15:46:07.540Z"
+    "title": "e2e ui post - chromium",
+    "content": "created by playwright ui test",
+    "imageUrl": "/uploads/images/1767888923226-948420.png",
+    "owner": "ui@example.com",
+    "id": "1767888923298086",
+    "createdAt": "2026-01-08T16:15:23.298Z"
   },
   {
-    "title": "Beginner’s Guide to REST APIs",
-    "content": "APIs connect apps seamlessly. Learn endpoints, requests, and responses to build smarter web projects.",
-    "imageUrl": "",
-    "owner": "user1@gmail.com",
-    "id": "1763791155918909",
-    "createdAt": "2025-11-22T05:59:15.921Z"
-  },
-  {
-    "title": "UX Design Principles You Can’t Ignore",
-    "content": "Clear navigation, consistent visuals, and empathy for users make interfaces intuitive and engaging.",
-    "imageUrl": "",
-    "owner": "UXuser2@gmail.com",
-    "id": "1763791201798922",
-    "createdAt": "2025-11-22T06:00:01.798Z"
-  },
-  {
-    "title": "Top Cybersecurity Habits for Students",
-    "content": "Use strong passwords, enable 2FA, and avoid suspicious links. Small steps protect big data.",
-    "imageUrl": "",
-    "owner": "secUser@gmail.com",
-    "id": "1763791317139872",
-    "createdAt": "2025-11-22T06:01:57.139Z"
-  },
-  {
-    "title": "how a show changed my life",
-    "content": "\"My Hero Academia” has changed my life in ways I never expected, and the impact keeps growing as the new season and the ongoing manga push the story to deeper, more emotional places. When I first started watching, I was drawn in by the action and the characters, but over time it became something far more personal. Watching Deku begin his journey with nothing but determination showed me that effort matters more than being naturally gifted. His growth made me believe that even if I start from the bottom, I can still reach something incredible if I keep trying. Characters like Todoroki, Bakugo, and Uraraka taught me that everyone carries their own struggles, no matter how strong they look on the outside, and that working through those wounds is part of becoming who you’re meant to be.\n\nAs the new season released, I found myself inspired all over again. The stakes are higher, the emotions hit harder, and the characters’ development feels even more real. It reminded me that people grow constantly, sometimes in painful ways, and that even in the darkest moments, there’s room for hope. The manga has only deepened this feeling. Reading ahead and seeing the characters face their most intense challenges—physically, emotionally, and morally—made me reflect on my own journey. It showed me that change isn’t always pretty, but it’s necessary, and it’s never too late to try to become better.\n\nThrough its story, MHA helped me accept my own quirks—my flaws, my strengths, my insecurities—and see them as parts of me worth embracing. It taught me that found family, loyalty, and compassion can be powerful forces in healing and growth. And as the series continues to evolve, I feel myself growing alongside it. “My Hero Academia” isn’t just a show or a manga to me anymore; it’s a reminder that I can rise, even when I fall, and that every step I take brings me closer to becoming the hero of my own life.",
-    "imageUrl": "/uploads/images/1763837061651-117450.jpg",
-    "owner": "hero@gmail.com",
-    "id": "1763837061659271",
-    "createdAt": "2025-11-22T18:44:21.659Z"
-  },
-  {
-    "title": "I took dvops. This is how i did it.",
-    "content": "I went to class on time, did my work and went home. Dont waste time on other things, lock in on the grind and aim for a good grade.",
-    "imageUrl": "/uploads/images/1763893782756-355202.png",
-    "owner": "student@gmail.com",
-    "id": "1763893782776400",
-    "createdAt": "2025-11-23T10:29:42.776Z"
-  },
-  {
-    "title": "api title",
-    "content": "api content",
-    "imageUrl": "img.png",
-    "owner": "api@me",
-    "id": "1767797283267527",
-    "createdAt": "2026-01-07T14:48:03.267Z"
-  },
-  {
-    "title": "api title",
-    "content": "api content",
-    "imageUrl": "img.png",
-    "owner": "api@me",
-    "id": "1767797291612248",
-    "createdAt": "2026-01-07T14:48:11.612Z"
-  },
-  {
-    "title": "api title",
-    "content": "api content",
-    "imageUrl": "img.png",
-    "owner": "api@me",
-    "id": "1767797329235102",
-    "createdAt": "2026-01-07T14:48:49.235Z"
+    "title": "e2e ui post - firefox",
+    "content": "created by playwright ui test",
+    "imageUrl": "/uploads/images/1767888925539-472325.png",
+    "owner": "ui@example.com",
+    "id": "1767888925550866",
+    "createdAt": "2026-01-08T16:15:25.550Z"
   }
 ]
