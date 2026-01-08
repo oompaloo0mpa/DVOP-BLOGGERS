@@ -94,5 +94,13 @@
     "owner": "ui@example.com",
     "id": "1767888925550866",
     "createdAt": "2026-01-08T16:15:25.550Z"
+  },
+  {
+    "title": "api title",
+    "content": "api content",
+    "imageUrl": "img.png",
+    "owner": "api@me",
+    "id": "1767889343954630",
+    "createdAt": "2026-01-08T16:22:23.955Z"
   }
 ]
