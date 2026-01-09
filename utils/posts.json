@@ -5,7 +5,7 @@
     "content": "sample content 1",
     "imageUrl": "/uploads/images/sample1.png",
     "owner": "admin@example.com",
-    "createdAt": "2026-01-09T17:08:52.337Z"
+    "createdAt": "2026-01-09T17:25:19.942Z"
   },
   {
     "id": "p-chromium-2",
@@ -13,7 +13,7 @@
     "content": "sample content 2",
     "imageUrl": "/uploads/images/sample2.png",
     "owner": "admin@example.com",
-    "createdAt": "2026-01-09T17:08:52.338Z"
+    "createdAt": "2026-01-09T17:25:19.945Z"
   },
   {
     "id": "p-firefox-1",
@@ -21,7 +21,7 @@
     "content": "sample content 1",
     "imageUrl": "/uploads/images/sample1.png",
     "owner": "admin@example.com",
-    "createdAt": "2026-01-09T17:08:52.338Z"
+    "createdAt": "2026-01-09T17:25:19.945Z"
   },
   {
     "id": "p-firefox-2",
@@ -29,7 +29,7 @@
     "content": "sample content 2",
     "imageUrl": "/uploads/images/sample2.png",
     "owner": "admin@example.com",
-    "createdAt": "2026-01-09T17:08:52.338Z"
+    "createdAt": "2026-01-09T17:25:19.945Z"
   },
   {
     "id": "p-webkit-1",
@@ -37,7 +37,7 @@
     "content": "sample content 1",
     "imageUrl": "/uploads/images/sample1.png",
     "owner": "admin@example.com",
-    "createdAt": "2026-01-09T17:08:52.338Z"
+    "createdAt": "2026-01-09T17:25:19.945Z"
   },
   {
     "id": "p-webkit-2",
@@ -45,46 +45,22 @@
     "content": "sample content 2",
     "imageUrl": "/uploads/images/sample2.png",
     "owner": "admin@example.com",
-    "createdAt": "2026-01-09T17:08:52.338Z"
-  },
-  {
-    "title": "e2e post - webkit",
-    "content": "created by playwright e2e test",
-    "imageUrl": "/uploads/images/e2e.png",
-    "owner": "e2e@example.com",
-    "id": "1767978532435428",
-    "createdAt": "2026-01-09T17:08:52.435Z"
-  },
-  {
-    "title": "e2e post - chromium",
-    "content": "created by playwright e2e test",
-    "imageUrl": "/uploads/images/e2e.png",
-    "owner": "e2e@example.com",
-    "id": "1767978532440579",
-    "createdAt": "2026-01-09T17:08:52.440Z"
-  },
-  {
-    "title": "Projector-chromium",
-    "content": "HD Projector",
-    "imageUrl": "/uploads/images/1767978533654-963844.png",
-    "owner": "admin@example.com",
-    "id": "1767978533692715",
-    "createdAt": "2026-01-09T17:08:53.692Z"
+    "createdAt": "2026-01-09T17:25:19.945Z"
   },
   {
     "title": "Projector-webkit",
     "content": "HD Projector",
-    "imageUrl": "/uploads/images/1767978533974-771840.png",
+    "imageUrl": "/uploads/images/1767979522550-335578.png",
     "owner": "admin@example.com",
-    "id": "1767978533984802",
-    "createdAt": "2026-01-09T17:08:53.984Z"
+    "id": "1767979522563784",
+    "createdAt": "2026-01-09T17:25:22.564Z"
   },
   {
-    "title": "Projector-firefox",
-    "content": "HD Projector",
-    "imageUrl": "/uploads/images/1767978536664-59423.png",
-    "owner": "admin@example.com",
-    "id": "1767978536682389",
-    "createdAt": "2026-01-09T17:08:56.682Z"
+    "title": "ui-title",
+    "content": "ui-content",
+    "imageUrl": "",
+    "owner": "i@me.com",
+    "id": "1767979525728882",
+    "createdAt": "2026-01-09T17:25:25.728Z"
   }
 ]
