@@ -47,36 +47,37 @@ test.describe('posts frontend e2e', () => {
   });
 });
 
-test.describe('create post ui test', () => { // describe block for create-only ui test - matin
-  test('creates a blog post via ui', async ({ page, browserName }) => { // single test: create post only - matin
-    await page.goto(BASE_URL); // navigate to the homepage where the add form lives - matin
-    const postTitle = `e2e ui post - ${browserName}`; // compose a unique title per browser run - matin
+test.describe('Resource Mgmt CRUD Frontend Tests', () => {
+  test('Create Resource', async ({ page, browserName }) => {
+    await page.goto(BASE_URL); // navigate to homepage
+    const postTitle = `Projector-${browserName}`; // use lab naming for title
 
-    await page.click('#openAddBtn'); // open the add-post modal using the floating button - matin
-    await page.waitForSelector('#title', { state: 'visible', timeout: 5000 }); // wait until the title input is visible - matin
+    // open modal
+    await page.click('#openAddBtn'); // click the add post floating button
 
-    await page.fill('#title', postTitle); // fill the title input with our generated title - matin
-    await page.fill('#content', 'created by playwright ui test'); // fill the content textarea with sample content - matin
-    await page.fill('#owner', 'ui@example.com'); // fill the owner/email input with a valid email - matin
+    // fill form
+    await page.fill('#title', postTitle); // title field
+    await page.fill('#content', 'HD Projector'); // content field using lab's description
+    await page.fill('#owner', 'admin@example.com'); // owner/email field
 
-    const imageInput = await page.$('#imageInput'); // check if the optional image file input exists - matin
-    if (imageInput) { // only attempt upload if the input is present - matin
-      try {
-        // attach a small empty file to simulate an image upload; name and mime are provided - matin
-        await imageInput.setInputFiles({ name: 'placeholder.png', mimeType: 'image/png', buffer: Buffer.from([137,80,78,71]) }); // set a tiny png-like buffer - matin
-      } catch (e) {
-        // if upload fails, continue without failing the whole test - matin
-      }
-    }
+    // attach a tiny image to exercise the upload flow
+    await page.setInputFiles('#imageInput', { name: 'e2e.png', mimeType: 'image/png', buffer: Buffer.from([137,80,78,71]) }); // attach tiny png
 
-    await page.click('#modalAdd'); // click the modal add button to submit the new post - matin
+    // submit the new post
+    const [uploadResp, addResp] = await Promise.all([
+      page.waitForResponse(r => r.url().endsWith('/upload') && r.status() === 201, { timeout: 10000 }), // wait for upload
+      page.waitForResponse(r => r.url().endsWith('/add-post') && r.status() === 201, { timeout: 10000 }), // wait for add-post
+      page.click('#modalAdd') // click add post button
+    ]);
 
-    await page.waitForSelector('#notif', { state: 'visible', timeout: 10000 }); // wait for the notification that indicates success - matin
-    const notifText = await page.locator('#notif').innerText(); // read the notification text - matin
-    expect(notifText.toLowerCase()).toContain('post added'); // assert success message shown (lowercased for robustness) - matin
+    // wait for modal to close
+    await page.waitForSelector('#modalBackdrop', { state: 'hidden', timeout: 10000 }); // wait until modal backdrop hidden
 
-    const row = page.locator('#posts h2.title', { hasText: postTitle }); // locate the newly created post by title in the posts grid - matin
-    await row.waitFor({ state: 'visible', timeout: 10000 }); // wait until the new post becomes visible in the list - matin
-    await expect(row).toBeVisible(); // final assertion: the created post is visible on the page - matin
+    // wait for the new post to appear in the posts grid
+    const row = page.locator('#posts h2.title', { hasText: postTitle }); // locate the post title
+    await row.waitFor({ state: 'visible', timeout: 10000 }); // wait for visibility
+
+    // assert it is visible
+    await expect(row).toBeVisible();
   });
 });

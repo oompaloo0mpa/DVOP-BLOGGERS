@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest --verbose",
     "test:coverage": "jest --verbose --coverage",
-    "test-frontend": "npx playwright test"
+    "test-frontend": "npx playwright test",
+    "test-frontend:coverage": "node generate-coverage.js"
   },
   "repository": {
     "type": "git",
