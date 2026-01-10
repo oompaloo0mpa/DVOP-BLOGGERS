@@ -97,5 +97,52 @@ describe('Unit Tests for Utils', () => {
         expect(fs.writeFile).not.toHaveBeenCalled(); // no writes when validation fails
     });
 
+    it('addPost should return 500 when non-ENOENT read error occurs', async () => {
+        // Simulate a permission error or other non-ENOENT error
+        const permissionError = new Error('EACCES: permission denied');
+        permissionError.code = 'EACCES';
+        fs.readFile.mockRejectedValueOnce(permissionError);
+
+        const req = { body: { title: 'test', content: 'test content' } };
+        const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
+
+        await addPost(req, res);
+
+        expect(res.status).toHaveBeenCalledWith(500);
+        expect(res.json).toHaveBeenCalledWith({ message: permissionError.message });
+    });
+
+    it('addPost should handle rename failure gracefully during corrupt file recovery', async () => {
+        fs.readFile.mockResolvedValueOnce('not valid json'); // corrupt posts.json
+        fs.rename.mockRejectedValueOnce(new Error('rename failed')); // rename fails
+        const template = [{ id: 't2', title: 'template3', content: 'templ3' }];
+        fs.readFile.mockResolvedValueOnce(JSON.stringify(template)); // template read succeeds
+        fs.writeFile.mockResolvedValue();
+
+        const req = { body: { title: 'rename fail post', content: 'content', imageUrl: 'x.png', owner: 'owner' } };
+        const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
+
+        await addPost(req, res);
+
+        // Should still succeed despite rename failure
+        expect(res.status).toHaveBeenCalledWith(201);
+        const final = JSON.parse(fs.writeFile.mock.calls[fs.writeFile.mock.calls.length - 1][1]);
+        expect(final.length).toBe(template.length + 1);
+    });
+
+    it('addPost should return 500 when writeFile fails', async () => {
+        const existing = [{ id: '1', title: 'old', content: 'old' }];
+        fs.readFile.mockResolvedValue(JSON.stringify(existing));
+        fs.writeFile.mockRejectedValueOnce(new Error('disk full'));
+
+        const req = { body: { title: 'write fail', content: 'content' } };
+        const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
+
+        await addPost(req, res);
+
+        expect(res.status).toHaveBeenCalledWith(500);
+        expect(res.json).toHaveBeenCalledWith({ message: 'disk full' });
+    });
+
     afterAll(() => { if (server && server.close) server.close(); }); // ensure server closed to avoid logs after tests finish
 });
