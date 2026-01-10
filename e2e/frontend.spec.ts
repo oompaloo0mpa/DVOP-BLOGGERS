@@ -50,7 +50,8 @@ test.describe('posts frontend e2e', () => {
 test.describe('Resource Mgmt CRUD Frontend Tests', () => {
   test('Create Resource', async ({ page, browserName }) => {
     await page.goto(BASE_URL); // navigate to homepage
-    const postTitle = `Projector-${browserName}`; // use lab naming for title
+    const uniqueId = Date.now(); // unique timestamp to avoid duplicate title collisions
+    const postTitle = `Projector-${browserName}-${uniqueId}`; // use unique naming for title
 
     // open modal
     await page.click('#openAddBtn'); // click the add post floating button
@@ -74,7 +75,7 @@ test.describe('Resource Mgmt CRUD Frontend Tests', () => {
     await page.waitForSelector('#modalBackdrop', { state: 'hidden', timeout: 10000 }); // wait until modal backdrop hidden
 
     // wait for the new post to appear in the posts grid
-    const row = page.locator('#posts h2.title', { hasText: postTitle }); // locate the post title
+    const row = page.locator('#posts h2.title', { hasText: postTitle }).first(); // locate the post title (use first to avoid strict mode)
     await row.waitFor({ state: 'visible', timeout: 10000 }); // wait for visibility
 
     // assert it is visible
