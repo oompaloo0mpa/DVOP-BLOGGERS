@@ -494,5 +494,221 @@
     "owner": "",
     "id": "1768061458227689",
     "createdAt": "2026-01-10T16:10:58.227Z"
+  },
+  {
+    "title": "e2e post - chromium",
+    "content": "created by playwright e2e test",
+    "imageUrl": "/uploads/images/e2e.png",
+    "owner": "e2e@example.com",
+    "id": "1768061654026176",
+    "createdAt": "2026-01-10T16:14:14.026Z"
+  },
+  {
+    "title": "Projector-chromium-1768061654823",
+    "content": "HD Projector",
+    "imageUrl": "/uploads/images/1768061656079-555427.png",
+    "owner": "admin@example.com",
+    "id": "1768061656101840",
+    "createdAt": "2026-01-10T16:14:16.101Z"
+  },
+  {
+    "title": "ui-title",
+    "content": "ui-content",
+    "imageUrl": "/uploads/images/1768061659908-284928.png",
+    "owner": "i@me.com",
+    "id": "1768061659918076",
+    "createdAt": "2026-01-10T16:14:19.918Z"
+  },
+  {
+    "title": "alert-title",
+    "content": "alert-content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768061660411876",
+    "createdAt": "2026-01-10T16:14:20.411Z"
+  },
+  {
+    "title": "no-image-title",
+    "content": "no-image-content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768061664885292",
+    "createdAt": "2026-01-10T16:14:24.885Z"
+  },
+  {
+    "title": "hide-title",
+    "content": "hide-content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768061665415415",
+    "createdAt": "2026-01-10T16:14:25.415Z"
+  },
+  {
+    "title": "catch-title",
+    "content": "catch-content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768061668676150",
+    "createdAt": "2026-01-10T16:14:28.676Z"
+  },
+  {
+    "title": "hide-catch",
+    "content": "hide-content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768061669129028",
+    "createdAt": "2026-01-10T16:14:29.129Z"
+  },
+  {
+    "title": "notif-error",
+    "content": "notif-content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768061669642912",
+    "createdAt": "2026-01-10T16:14:29.642Z"
+  },
+  {
+    "title": "e2e post - firefox",
+    "content": "created by playwright e2e test",
+    "imageUrl": "/uploads/images/e2e.png",
+    "owner": "e2e@example.com",
+    "id": "1768061673061157",
+    "createdAt": "2026-01-10T16:14:33.061Z"
+  },
+  {
+    "title": "Projector-firefox-1768061675397",
+    "content": "HD Projector",
+    "imageUrl": "/uploads/images/1768061676082-736052.png",
+    "owner": "admin@example.com",
+    "id": "1768061676139190",
+    "createdAt": "2026-01-10T16:14:36.139Z"
+  },
+  {
+    "title": "ui-title",
+    "content": "ui-content",
+    "imageUrl": "/uploads/images/1768061683140-259850.png",
+    "owner": "i@me.com",
+    "id": "1768061683159471",
+    "createdAt": "2026-01-10T16:14:43.159Z"
+  },
+  {
+    "title": "alert-title",
+    "content": "alert-content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768061684339991",
+    "createdAt": "2026-01-10T16:14:44.339Z"
+  },
+  {
+    "title": "no-image-title",
+    "content": "no-image-content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768061690417399",
+    "createdAt": "2026-01-10T16:14:50.417Z"
+  },
+  {
+    "title": "hide-title",
+    "content": "hide-content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768061691253574",
+    "createdAt": "2026-01-10T16:14:51.253Z"
+  },
+  {
+    "title": "catch-title",
+    "content": "catch-content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768061697072704",
+    "createdAt": "2026-01-10T16:14:57.072Z"
+  },
+  {
+    "title": "hide-catch",
+    "content": "hide-content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768061698011574",
+    "createdAt": "2026-01-10T16:14:58.011Z"
+  },
+  {
+    "title": "notif-error",
+    "content": "notif-content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768061699145498",
+    "createdAt": "2026-01-10T16:14:59.145Z"
+  },
+  {
+    "title": "e2e post - webkit",
+    "content": "created by playwright e2e test",
+    "imageUrl": "/uploads/images/e2e.png",
+    "owner": "e2e@example.com",
+    "id": "1768061702569156",
+    "createdAt": "2026-01-10T16:15:02.569Z"
+  },
+  {
+    "title": "Projector-webkit-1768061703406",
+    "content": "HD Projector",
+    "imageUrl": "/uploads/images/1768061704037-312207.png",
+    "owner": "admin@example.com",
+    "id": "1768061704043822",
+    "createdAt": "2026-01-10T16:15:04.043Z"
+  },
+  {
+    "title": "ui-title",
+    "content": "ui-content",
+    "imageUrl": "/uploads/images/1768061710902-621321.png",
+    "owner": "i@me.com",
+    "id": "1768061710916090",
+    "createdAt": "2026-01-10T16:15:10.916Z"
+  },
+  {
+    "title": "alert-title",
+    "content": "alert-content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768061712008357",
+    "createdAt": "2026-01-10T16:15:12.008Z"
+  },
+  {
+    "title": "no-image-title",
+    "content": "no-image-content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768061718703017",
+    "createdAt": "2026-01-10T16:15:18.703Z"
+  },
+  {
+    "title": "hide-title",
+    "content": "hide-content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768061719713133",
+    "createdAt": "2026-01-10T16:15:19.713Z"
+  },
+  {
+    "title": "catch-title",
+    "content": "catch-content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768061724751226",
+    "createdAt": "2026-01-10T16:15:24.751Z"
+  },
+  {
+    "title": "hide-catch",
+    "content": "hide-content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768061725734890",
+    "createdAt": "2026-01-10T16:15:25.734Z"
+  },
+  {
+    "title": "notif-error",
+    "content": "notif-content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768061726669434",
+    "createdAt": "2026-01-10T16:15:26.669Z"
   }
 ]
