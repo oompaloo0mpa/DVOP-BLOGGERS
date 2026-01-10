@@ -58,12 +58,15 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', startPage));
 });
 
-// CHANGED: SINGLE LISTEN CALL; USE this.address() INSIDE CALLBACK TO AVOID UNDEFINED server
-const server = app.listen(PORT, function () {
-  const address = this.address();
-  const host = (address.address === '::') ? 'localhost' : address.address;
-  const baseUrl = `http://${host}:${address.port}`;
-  console.log(`Demo project at: ${baseUrl}`);
-});
+// CHANGED: ONLY START SERVER WHEN RUN DIRECTLY, NOT WHEN IMPORTED FOR TESTING
+let server;
+if (require.main === module) {
+  server = app.listen(PORT, function () {
+    const address = this.address();
+    const host = (address.address === '::') ? 'localhost' : address.address;
+    const baseUrl = `http://${host}:${address.port}`;
+    console.log(`Demo project at: ${baseUrl}`);
+  });
+}
 
 module.exports = { app, server };

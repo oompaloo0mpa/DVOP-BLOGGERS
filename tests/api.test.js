@@ -1,7 +1,17 @@
 const request = require('supertest');
-const { app, server } = require('../index');
-// Close server after all tests complete
-afterAll(() => server.close());
+const { app } = require('../index');
+
+let server;
+
+// Start server before tests and close after
+beforeAll((done) => {
+    server = app.listen(0, done); // Use port 0 to get a random available port
+});
+
+afterAll((done) => {
+    server.close(done);
+});
+
 describe('Add Post API', () => { // api tests grouped here
         let resourceId; // variable to store created resource id
 
@@ -14,6 +24,4 @@ describe('Add Post API', () => { // api tests grouped here
             expect(res.body.some(r => r.title === newPost.title)).toBe(true); // expect returned list contains the new post
             resourceId = res.body[res.body.length - 1].id; // store the id of the newly created post
         });
-
-        afterAll(() => server.close()); // close the server after api tests finish
     });
