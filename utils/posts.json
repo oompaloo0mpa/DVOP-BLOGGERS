@@ -46,53 +46,5 @@
     "imageUrl": "/uploads/images/sample2.png",
     "owner": "admin@example.com",
     "createdAt": "2025-01-01T00:00:00.000Z"
-  },
-  {
-    "title": "catch-title",
-    "content": "catch-content",
-    "imageUrl": "",
-    "owner": "",
-    "id": "1768101983680874",
-    "createdAt": "2026-01-11T03:26:23.680Z"
-  },
-  {
-    "title": "hide-catch",
-    "content": "hide-content",
-    "imageUrl": "",
-    "owner": "",
-    "id": "1768101984815964",
-    "createdAt": "2026-01-11T03:26:24.815Z"
-  },
-  {
-    "title": "notif-error",
-    "content": "notif-content",
-    "imageUrl": "",
-    "owner": "",
-    "id": "1768101984860356",
-    "createdAt": "2026-01-11T03:26:24.860Z"
-  },
-  {
-    "title": "cypress: post 1768104030591",
-    "content": "cypress: post content",
-    "imageUrl": "",
-    "owner": "",
-    "id": "1768104032719986",
-    "createdAt": "2026-01-11T04:00:32.719Z"
-  },
-  {
-    "title": "Cypress Test Post 1768105173232",
-    "content": "This is test content from Cypress",
-    "imageUrl": "",
-    "owner": "test@example.com",
-    "id": "1768105175244391",
-    "createdAt": "2026-01-11T04:19:35.244Z"
-  },
-  {
-    "title": "Clear Test Post",
-    "content": "Clear test content",
-    "imageUrl": "",
-    "owner": "",
-    "id": "1768105180454881",
-    "createdAt": "2026-01-11T04:19:40.454Z"
   }
 ]

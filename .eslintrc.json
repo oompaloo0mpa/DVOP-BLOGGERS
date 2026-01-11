@@ -1,0 +1,17 @@
+{
+  "extends": ["eslint:recommended"],
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "overrides": [
+    {
+      "files": ["e2e/**/*.cypress.*"],
+      "extends": ["plugin:cypress/recommended"],
+      "env": {
+        "cypress": true
+      }
+    }
+  ]
+}
