@@ -262,5 +262,253 @@
     "owner": "",
     "id": "1768121925904639",
     "createdAt": "2026-01-11T08:58:45.904Z"
+  },
+  {
+    "title": "e2e post - chromium",
+    "content": "a short e2e blog post demonstrating the add-post flow",
+    "imageUrl": "/uploads/images/e2e.png",
+    "owner": "e2e.author@example.com",
+    "id": "1768122207347530",
+    "createdAt": "2026-01-11T09:03:27.347Z"
+  },
+  {
+    "title": "A Portable Projector Review - chromium-1768122208280",
+    "content": "a brief review and first impressions of a portable projector for home cinema and presentations.",
+    "imageUrl": "/uploads/images/1768122209723-731347.png",
+    "owner": "coolbeanstest@example.com",
+    "id": "1768122209731733",
+    "createdAt": "2026-01-11T09:03:29.731Z"
+  },
+  {
+    "title": "ui-title",
+    "content": "ui-content",
+    "imageUrl": "/uploads/images/1768122214632-656529.png",
+    "owner": "i@me.com",
+    "id": "1768122214640196",
+    "createdAt": "2026-01-11T09:03:34.640Z"
+  },
+  {
+    "title": "alert-title",
+    "content": "alert-content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768122215341003",
+    "createdAt": "2026-01-11T09:03:35.341Z"
+  },
+  {
+    "title": "no-image-title",
+    "content": "no-image-content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768122220827868",
+    "createdAt": "2026-01-11T09:03:40.828Z"
+  },
+  {
+    "title": "hide-title",
+    "content": "hide-content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768122221515929",
+    "createdAt": "2026-01-11T09:03:41.515Z"
+  },
+  {
+    "title": "catch-title",
+    "content": "catch-content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768122225361429",
+    "createdAt": "2026-01-11T09:03:45.361Z"
+  },
+  {
+    "title": "hide-catch",
+    "content": "hide-content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768122225991177",
+    "createdAt": "2026-01-11T09:03:45.991Z"
+  },
+  {
+    "title": "notif-error",
+    "content": "notif-content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768122226747500",
+    "createdAt": "2026-01-11T09:03:46.747Z"
+  },
+  {
+    "title": "e2e post - firefox",
+    "content": "a short e2e blog post demonstrating the add-post flow",
+    "imageUrl": "/uploads/images/e2e.png",
+    "owner": "e2e.author@example.com",
+    "id": "1768122232119909",
+    "createdAt": "2026-01-11T09:03:52.119Z"
+  },
+  {
+    "title": "A Portable Projector Review - firefox-1768122236479",
+    "content": "a brief review and first impressions of a portable projector for home cinema and presentations.",
+    "imageUrl": "/uploads/images/1768122237837-196892.png",
+    "owner": "coolbeanstest@example.com",
+    "id": "1768122237889093",
+    "createdAt": "2026-01-11T09:03:57.889Z"
+  },
+  {
+    "title": "ui-title",
+    "content": "ui-content",
+    "imageUrl": "/uploads/images/1768122248197-979044.png",
+    "owner": "i@me.com",
+    "id": "1768122248217368",
+    "createdAt": "2026-01-11T09:04:08.217Z"
+  },
+  {
+    "title": "alert-title",
+    "content": "alert-content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768122249564480",
+    "createdAt": "2026-01-11T09:04:09.564Z"
+  },
+  {
+    "title": "no-image-title",
+    "content": "no-image-content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768122257153540",
+    "createdAt": "2026-01-11T09:04:17.153Z"
+  },
+  {
+    "title": "hide-title",
+    "content": "hide-content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768122258309449",
+    "createdAt": "2026-01-11T09:04:18.309Z"
+  },
+  {
+    "title": "catch-title",
+    "content": "catch-content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768122265958361",
+    "createdAt": "2026-01-11T09:04:25.958Z"
+  },
+  {
+    "title": "hide-catch",
+    "content": "hide-content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768122267525063",
+    "createdAt": "2026-01-11T09:04:27.525Z"
+  },
+  {
+    "title": "notif-error",
+    "content": "notif-content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768122268876480",
+    "createdAt": "2026-01-11T09:04:28.876Z"
+  },
+  {
+    "title": "e2e post - webkit",
+    "content": "a short e2e blog post demonstrating the add-post flow",
+    "imageUrl": "/uploads/images/e2e.png",
+    "owner": "e2e.author@example.com",
+    "id": "1768122275491830",
+    "createdAt": "2026-01-11T09:04:35.491Z"
+  },
+  {
+    "title": "A Portable Projector Review - webkit-1768122276461",
+    "content": "a brief review and first impressions of a portable projector for home cinema and presentations.",
+    "imageUrl": "/uploads/images/1768122277197-753314.png",
+    "owner": "coolbeanstest@example.com",
+    "id": "1768122277210281",
+    "createdAt": "2026-01-11T09:04:37.210Z"
+  },
+  {
+    "title": "ui-title",
+    "content": "ui-content",
+    "imageUrl": "/uploads/images/1768122284645-579163.png",
+    "owner": "i@me.com",
+    "id": "1768122284656156",
+    "createdAt": "2026-01-11T09:04:44.656Z"
+  },
+  {
+    "title": "alert-title",
+    "content": "alert-content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768122285753766",
+    "createdAt": "2026-01-11T09:04:45.753Z"
+  },
+  {
+    "title": "no-image-title",
+    "content": "no-image-content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768122292857691",
+    "createdAt": "2026-01-11T09:04:52.857Z"
+  },
+  {
+    "title": "hide-title",
+    "content": "hide-content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768122293936027",
+    "createdAt": "2026-01-11T09:04:53.936Z"
+  },
+  {
+    "title": "catch-title",
+    "content": "catch-content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768122300112736",
+    "createdAt": "2026-01-11T09:05:00.112Z"
+  },
+  {
+    "title": "hide-catch",
+    "content": "hide-content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768122301202057",
+    "createdAt": "2026-01-11T09:05:01.202Z"
+  },
+  {
+    "title": "notif-error",
+    "content": "notif-content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768122302276137",
+    "createdAt": "2026-01-11T09:05:02.276Z"
+  },
+  {
+    "title": "Cypress Test Post 1768122358069",
+    "content": "This is test content from Cypress",
+    "imageUrl": "",
+    "owner": "test@example.com",
+    "id": "1768122360327115",
+    "createdAt": "2026-01-11T09:06:00.327Z"
+  },
+  {
+    "title": "Clear Test Post",
+    "content": "Clear test content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768122390810180",
+    "createdAt": "2026-01-11T09:06:30.810Z"
+  },
+  {
+    "title": "Post without owner",
+    "content": "Test content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768122392505833",
+    "createdAt": "2026-01-11T09:06:32.505Z"
+  },
+  {
+    "title": "  Test with spaces  ",
+    "content": "  Content with spaces  ",
+    "imageUrl": "",
+    "owner": "test@example.com",
+    "id": "1768122395558670",
+    "createdAt": "2026-01-11T09:06:35.558Z"
   }
 ]
