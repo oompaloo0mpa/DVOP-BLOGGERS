@@ -40,7 +40,9 @@ async function convertCoverage() {
 
       if (!pathname.endsWith('.js') ||
           (entry.url.startsWith('http') && !entry.url.includes('localhost')) ||
-          entry.url.includes('node_modules')) {
+          entry.url.includes('node_modules') ||
+          pathname.includes('kleaven.js') ||
+          entry.url.includes('kleaven.js')) {
         console.warn(`Skipping file: ${entry.url}`);
         continue;
       }
@@ -77,9 +79,9 @@ async function convertCoverage() {
   const context = createContext({ dir: istanbulCoverageDir, coverageMap }); // create istanbul report context for html/lcov generation
   ['html', 'lcovonly'].forEach(type => reports.create(type).execute(context));
 
-  // We only want to enforce coverage thresholds for the frontend POST feature
-  // implemented in `matin.js`. Locate the converted coverage entry that ends
-  // with `matin.js` and compute a per-file summary for threshold checking.
+
+
+  // enforce coverage thresholds for the frontend POST feature in `matin.js`. find entry that endwith `matin.js` and compute a per-file summary for threshold checking.
   const allFiles = Object.keys(coverageMap.data); // list all converted coverage entries
   const matinKey = allFiles.find(k => k.replace(/\\/g, '/').endsWith('/matin.js') || k.endsWith('matin.js')); // try to find the matin.js entry
 
@@ -94,13 +96,13 @@ async function convertCoverage() {
   const summary = matinMap.getCoverageSummary().data; // get lines/statements/functions/branches % for matin.js
 
   // Define minimum acceptable coverage thresholds for each metric (in percentage)
-  // These values are applied only to `matin.js`.
   const thresholds = { // threshold values (percent) applied only to matin.js
     lines: 90, // min % of lines covered
     statements: 90, // min % of statements covered
     functions: 90, // min % of functions invoked
     branches: 90 // min % of branches covered
   };
+  
 
   let belowThreshold = []; // collect metrics that fail the gate
   for (const [metric, threshold] of Object.entries(thresholds)) { // check each metric

@@ -59,7 +59,7 @@ test.describe('Resource Mgmt CRUD Frontend Tests', () => {
     // fill form
     await page.fill('#title', postTitle); // title field
     await page.fill('#content', 'a brief review and first impressions of a portable projector for home cinema and presentations.'); // blogpost-style content
-    await page.fill('#owner', 'coolbeanstest@example.com'); // author email (keeps validation happy)
+    await page.fill('#owner', 'coolbeanstest@example.com'); // author email (keeps validation happy :D)
 
     // attach a tiny image to exercise the upload flow
     await page.setInputFiles('#imageInput', { name: 'e2e.png', mimeType: 'image/png', buffer: Buffer.from([137,80,78,71]) }); // attach tiny png

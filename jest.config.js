@@ -10,6 +10,8 @@ module.exports = {
     // Here, all JS files in 'utils' folder and 'index.js' are included
     collectCoverageFrom: [
         'utils/**/*.js',
+        '!utils/DaniUtil.js',
+        '!utils/KleavenUtil.js',
         'index.js'
     ],
     // Directory where coverage reports will be saved

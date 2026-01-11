@@ -1,0 +1,67 @@
+[
+  {
+    "id": "p-chromium-1",
+    "title": "sample post 1 - chromium",
+    "content": "sample content 1",
+    "imageUrl": "/uploads/images/sample1.png",
+    "owner": "admin@example.com",
+    "createdAt": "2025-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "p-chromium-2",
+    "title": "sample post 2 - chromium",
+    "content": "sample content 2",
+    "imageUrl": "/uploads/images/sample2.png",
+    "owner": "admin@example.com",
+    "createdAt": "2025-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "p-firefox-1",
+    "title": "sample post 1 - firefox",
+    "content": "sample content 1",
+    "imageUrl": "/uploads/images/sample1.png",
+    "owner": "admin@example.com",
+    "createdAt": "2025-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "p-firefox-2",
+    "title": "sample post 2 - firefox",
+    "content": "sample content 2",
+    "imageUrl": "/uploads/images/sample2.png",
+    "owner": "admin@example.com",
+    "createdAt": "2025-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "p-webkit-1",
+    "title": "sample post 1 - webkit",
+    "content": "sample content 1",
+    "imageUrl": "/uploads/images/sample1.png",
+    "owner": "admin@example.com",
+    "createdAt": "2025-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "p-webkit-2",
+    "title": "sample post 2 - webkit",
+    "content": "sample content 2",
+    "imageUrl": "/uploads/images/sample2.png",
+    "owner": "admin@example.com",
+    "createdAt": "2025-01-01T00:00:00.000Z"
+  },
+  {
+    "title": "catch-title",
+    "content": "catch-content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768154797892783",
+    "createdAt": "2026-01-11T18:06:37.892Z"
+  },
+  {
+    "title": "hide-catch",
+    "content": "hide-content",
+    "imageUrl": "",
+    "owner": "",
+    "id": "1768154799013068",
+    "createdAt": "2026-01-11T18:06:39.013Z"
+  }
+]
+]
