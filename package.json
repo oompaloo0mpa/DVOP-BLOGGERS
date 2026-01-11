@@ -4,8 +4,8 @@
   "description": "4.0GPA",
   "main": "index.js",
   "scripts": {
-    "test": "jest --verbose",
-    "test:coverage": "jest --verbose --coverage",
+    "test": "jest --verbose --runInBand",
+    "test:coverage": "jest --verbose --coverage --runInBand",
     "test-frontend": "npx playwright test",
     "test-frontend:coverage": "node generate-coverage.js",
     "start": "node index.js",
