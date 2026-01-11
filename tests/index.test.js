@@ -45,12 +45,20 @@ test('reportAddressInfo handles missing and IPv6 address', () => {
 });
 
 test('GET /utils/posts.json returns JSON', async () => {
+  // ensure posts fixture exists (other tests may have renamed/removed it)
+  try {
+    fs.writeFileSync(path.join(utilsDir, 'posts.json'), JSON.stringify([]));
+  } catch (e) {}
   const res = await request(app).get('/utils/posts.json');
   expect(res.status).toBe(200);
   expect(res.type).toMatch(/json/);
 });
 
 test('GET /utils/blogs.json returns JSON', async () => {
+  // ensure blogs fixture exists
+  try {
+    fs.writeFileSync(path.join(utilsDir, 'blogs.json'), JSON.stringify([]));
+  } catch (e) {}
   const res = await request(app).get('/utils/blogs.json');
   expect(res.status).toBe(200);
   expect(res.type).toMatch(/json/);
