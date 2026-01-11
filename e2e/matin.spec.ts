@@ -230,7 +230,6 @@ test.describe('matin.js create-post branches', () => {
     expect(called).toBeTruthy();
   });
 
-  // ============ previewImage BRANCHES ============
 
   // Branch: if (!input || !img) return - elements don't exist
   test('previewImage returns early if elements missing', async ({ page }) => {
