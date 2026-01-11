@@ -10,6 +10,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 // CHANGED: USE ABSOLUTE STATIC PATH FOR RELIABILITY
 app.use(express.static(path.join(__dirname, 'public')));
+// Serve utils folder statically for JSON files
+app.use('/utils', express.static(path.join(__dirname, 'utils')));
 
 // MULTER IMAGE UPLOAD SETUP
 const fs = require('fs');
