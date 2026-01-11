@@ -6,18 +6,18 @@ const { app, startServer, reportAddressInfo } = require('../index');
 
 // Do not start a real server here; use `app` with supertest to avoid port conflicts
 const utilsDir = path.join(__dirname, '..', 'utils');
+const postsPath = path.join(utilsDir, 'posts.json');
+const blogsPath = path.join(utilsDir, 'blogs.json');
+
+// Helper to ensure fixture files exist (call before tests that need them)
+function ensureFixtures() {
+  fs.mkdirSync(utilsDir, { recursive: true });
+  fs.writeFileSync(postsPath, JSON.stringify([]));
+  fs.writeFileSync(blogsPath, JSON.stringify([]));
+}
 
 beforeAll(() => {
-  // Create minimal fixture files if missing so CI runs don't depend on repo state
-  try {
-    if (!fs.existsSync(utilsDir)) fs.mkdirSync(utilsDir, { recursive: true });
-    const postsPath = path.join(utilsDir, 'posts.json');
-    if (!fs.existsSync(postsPath)) fs.writeFileSync(postsPath, JSON.stringify([]));
-    const blogsPath = path.join(utilsDir, 'blogs.json');
-    if (!fs.existsSync(blogsPath)) fs.writeFileSync(blogsPath, JSON.stringify([]));
-  } catch (e) {
-    // ignore setup errors; tests will surface issues if they occur
-  }
+  ensureFixtures();
 });
 
 afterAll(() => {
@@ -45,20 +45,16 @@ test('reportAddressInfo handles missing and IPv6 address', () => {
 });
 
 test('GET /utils/posts.json returns JSON', async () => {
-  // ensure posts fixture exists (other tests may have renamed/removed it)
-  try {
-    fs.writeFileSync(path.join(utilsDir, 'posts.json'), JSON.stringify([]));
-  } catch (e) {}
+  // recreate fixture before request (other test suites may have modified/removed it)
+  ensureFixtures();
   const res = await request(app).get('/utils/posts.json');
   expect(res.status).toBe(200);
   expect(res.type).toMatch(/json/);
 });
 
 test('GET /utils/blogs.json returns JSON', async () => {
-  // ensure blogs fixture exists
-  try {
-    fs.writeFileSync(path.join(utilsDir, 'blogs.json'), JSON.stringify([]));
-  } catch (e) {}
+  // recreate fixture before request
+  ensureFixtures();
   const res = await request(app).get('/utils/blogs.json');
   expect(res.status).toBe(200);
   expect(res.type).toMatch(/json/);
