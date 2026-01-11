@@ -3,15 +3,16 @@ const request = require('supertest');
 const fs = require('fs');
 const path = require('path');
 
-// Create fixtures BEFORE importing app (index.js reads files on startup)
-const utilsDir = path.join(process.cwd(), 'utils');
+// Use __dirname to reliably locate project root (tests/../ = project root)
+const projectRoot = path.resolve(__dirname, '..');
+const utilsDir = path.join(projectRoot, 'utils');
 const postsPath = path.join(utilsDir, 'posts.json');
 const blogsPath = path.join(utilsDir, 'blogs.json');
 
 // Ensure fixtures exist immediately (before app import)
 fs.mkdirSync(utilsDir, { recursive: true });
-if (!fs.existsSync(postsPath)) fs.writeFileSync(postsPath, '[]');
-if (!fs.existsSync(blogsPath)) fs.writeFileSync(blogsPath, '[]');
+fs.writeFileSync(postsPath, '[]');
+fs.writeFileSync(blogsPath, '[]');
 
 const { app, startServer, reportAddressInfo } = require('../index');
 
