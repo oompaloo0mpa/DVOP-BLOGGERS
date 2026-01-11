@@ -2,23 +2,25 @@ process.env.COVER_INDEX = '1';
 const request = require('supertest');
 const fs = require('fs');
 const path = require('path');
-const { app, startServer, reportAddressInfo } = require('../index');
 
-// Do not start a real server here; use `app` with supertest to avoid port conflicts
-const utilsDir = path.join(__dirname, '..', 'utils');
+// Create fixtures BEFORE importing app (index.js reads files on startup)
+const utilsDir = path.join(process.cwd(), 'utils');
 const postsPath = path.join(utilsDir, 'posts.json');
 const blogsPath = path.join(utilsDir, 'blogs.json');
+
+// Ensure fixtures exist immediately (before app import)
+fs.mkdirSync(utilsDir, { recursive: true });
+if (!fs.existsSync(postsPath)) fs.writeFileSync(postsPath, '[]');
+if (!fs.existsSync(blogsPath)) fs.writeFileSync(blogsPath, '[]');
+
+const { app, startServer, reportAddressInfo } = require('../index');
 
 // Helper to ensure fixture files exist (call before tests that need them)
 function ensureFixtures() {
   fs.mkdirSync(utilsDir, { recursive: true });
-  fs.writeFileSync(postsPath, JSON.stringify([]));
-  fs.writeFileSync(blogsPath, JSON.stringify([]));
+  fs.writeFileSync(postsPath, '[]');
+  fs.writeFileSync(blogsPath, '[]');
 }
-
-beforeAll(() => {
-  ensureFixtures();
-});
 
 afterAll(() => {
   // intentionally left blank: avoid deleting repo fixtures in CI
