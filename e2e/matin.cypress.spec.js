@@ -4,7 +4,7 @@
 /**
  * Cypress E2E Tests for Post Feature
  * Tests cover: matin.js (frontend) and MatinUtil.js (backend utility)
- * 
+ *  highkey need this cz if its not here the stupid thing turns red
  * Test Categories:
  * - Positive Flows: Creating posts successfully
  * - Negative Flows: Validation for missing title/content
