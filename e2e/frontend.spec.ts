@@ -34,9 +34,9 @@ test.describe('posts frontend e2e', () => {
     // create a new post via api and verify it exists in the returned list
     const newPost = {
       title: `e2e post - ${browserName}`,
-      content: 'created by playwright e2e test',
+      content: 'a short e2e blog post demonstrating the add-post flow',
       imageUrl: '/uploads/images/e2e.png',
-      owner: 'e2e@example.com'
+      owner: 'e2e.author@example.com'
     };
 
     const res = await request.post(`${BASE_URL}/add-post`, { data: newPost }); // post to add-post endpoint
@@ -51,15 +51,15 @@ test.describe('Resource Mgmt CRUD Frontend Tests', () => {
   test('Create Resource', async ({ page, browserName }) => {
     await page.goto(BASE_URL); // navigate to homepage
     const uniqueId = Date.now(); // unique timestamp to avoid duplicate title collisions
-    const postTitle = `Projector-${browserName}-${uniqueId}`; // use unique naming for title
+    const postTitle = `A Portable Projector Review - ${browserName}-${uniqueId}`; // use unique, blog-like title
 
     // open modal
     await page.click('#openAddBtn'); // click the add post floating button
 
     // fill form
     await page.fill('#title', postTitle); // title field
-    await page.fill('#content', 'HD Projector'); // content field using lab's description
-    await page.fill('#owner', 'admin@example.com'); // owner/email field
+    await page.fill('#content', 'a brief review and first impressions of a portable projector for home cinema and presentations.'); // blogpost-style content
+    await page.fill('#owner', 'coolbeanstest@example.com'); // author email (keeps validation happy)
 
     // attach a tiny image to exercise the upload flow
     await page.setInputFiles('#imageInput', { name: 'e2e.png', mimeType: 'image/png', buffer: Buffer.from([137,80,78,71]) }); // attach tiny png

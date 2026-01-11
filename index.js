@@ -63,6 +63,10 @@ let server;
 if (require.main === module) {
   server = app.listen(PORT, function () {
     const address = this.address();
+    if (!address) { // this can happen on Windows
+      console.log(`Demo project listening on port ${PORT}`); // no address info
+      return; 
+    }
     const host = (address.address === '::') ? 'localhost' : address.address;
     const baseUrl = `http://${host}:${address.port}`;
     console.log(`Demo project at: ${baseUrl}`);
