@@ -5,7 +5,7 @@ WORKDIR /usr/src/app
 # Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
 # Install app dependencies
-RUN npm install
+RUN npm ci --only=production --no-audit --no-fund
 # Bundle app source
 COPY . .
 # Expose the port your app runs on
