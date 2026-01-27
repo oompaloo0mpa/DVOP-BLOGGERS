@@ -5,6 +5,7 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 5050;
 const startPage = 'index.html';
+const logger = require('./logger');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -12,6 +13,9 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 // Serve utils folder statically for JSON files
 app.use('/utils', express.static(path.join(__dirname, 'utils')));
+
+const statusMonitor = require('express-status-monitor');
+app.use(statusMonitor());
 
 // MULTER IMAGE UPLOAD SETUP
 const fs = require('fs');
@@ -67,17 +71,20 @@ let server;
 function startServer() {
   if (server) return server;
   server = app.listen(PORT, function () {
-    const address = this.address();
-    if (!address) { // this can happen on Windows
-      console.log(`Demo project listening on port ${PORT}`); // no address info
+    const address = server && server.address && server.address(); // THIS GETS THE SERVER'S BOUND ADDRESS OBJECT FROM THE LISTENED SOCKET
+    if (!address) { // THIS HANDLES CASES WHERE THE ADDRESS IS NOT AVAILABLE (E.G., WINDOWS) >:/
+      console.log(`Demo project listening on port ${PORT}`); // THIS LOGS A SIMPLE PORT-FALLBACK MESSAGE WHEN ADDRESS IS MISSING >:/
+      logger.info && logger.info(`Demo project listening on port ${PORT}`); // THIS SENDS THE SAME PORT-FALLBACK MESSAGE TO THE LOGGER AS INFO >:/
       return;
     }
     /* istanbul ignore next */
-    const host = (address.address === '::') ? 'localhost' : address.address;
+    const baseUrl = `http://${address.address == '::' ? 'localhost' : address.address}:${address.port}`; // THIS BUILDS THE BASE URL, REPLACING '::' WITH 'localhost' WHEN NECESSARY >:/
     /* istanbul ignore next */
-    const baseUrl = `http://${host}:${address.port}`;
+    console.log(`Demo project at: ${baseUrl}`); // THIS PRINTS THE FULL BASE URL TO STDOUT >:/
     /* istanbul ignore next */
-    console.log(`Demo project at: ${baseUrl}`);
+    logger.info && logger.info(`Demo project at: ${baseUrl}!`); // THIS LOGS AN INFO MESSAGE WITH THE BASE URL VIA THE LOGGER >:/
+    /* istanbul ignore next */
+    logger.error && logger.error(`Example of error log`); // THIS DEMONSTRATES LOGGING AN ERROR MESSAGE VIA THE LOGGER >:/
   });
   return server;
 }
@@ -110,4 +117,4 @@ if (process.env.COVER_INDEX === '1') {
   // do not start server here to avoid interfering with test suite lifecycle
 }
 
-module.exports = { app, server, startServer, reportAddressInfo };
+module.exports = { app, server };
