@@ -148,11 +148,7 @@ pipeline {
                         </body>
                     </html>""",
                     mimeType: 'text/html',
-                    to: 'paperboi1273@gmail.com',
-                    recipientProviders: [
-                        [$class: 'DevelopersRecipientProvider'],
-                        [$class: 'RequesterRecipientProvider']
-                    ]
+                    to: 'paperboi1273@gmail.com'
                 )
             }
         }
@@ -210,11 +206,7 @@ pipeline {
                     </html>""",
                     mimeType: 'text/html',
                     to: 'paperboi1273@gmail.com',
-                    attachLog: true,
-                    recipientProviders: [
-                        [$class: 'DevelopersRecipientProvider'],
-                        [$class: 'RequesterRecipientProvider']
-                    ]
+                    attachLog: true
                 )
             }
         }
@@ -260,11 +252,7 @@ pipeline {
                         </body>
                     </html>""",
                     mimeType: 'text/html',
-                    to: 'paperboi1273@gmail.com',
-                    recipientProviders: [
-                        [$class: 'DevelopersRecipientProvider'],
-                        [$class: 'RequesterRecipientProvider']
-                    ]
+                    to: 'paperboi1273@gmail.com'
                 )
             }
         }
