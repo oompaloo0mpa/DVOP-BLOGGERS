@@ -101,91 +101,172 @@ pipeline {
     post {
         success {
             echo 'Build succeeded! Sending success email...'
-            emailext(
-                subject: "${env.JOB_NAME} - Build #${env.BUILD_NUMBER} - SUCCESS!",
-                body: """
-                    <html>
-                        <body>
-                            <h2 style="color: green;">Build Successful! ✓</h2>
-                            <p><strong>Project:</strong> ${env.JOB_NAME}</p>
-                            <p><strong>Build Number:</strong> ${env.BUILD_NUMBER}</p>
-                            <p><strong>Status:</strong> <span style="color: green; font-weight: bold;">SUCCESS</span></p>
-                            <p><strong>Duration:</strong> ${currentBuild.durationString}</p>
-                            <p><strong>Started By:</strong> ${currentBuild.getBuildCauses()[0].shortDescription}</p>
-                            <hr>
-                            <p><strong>Changes:</strong></p>
-                            <ul>
-                                ${getChangeString()}
-                            </ul>
-                            <hr>
-                            <p>Check console output at <a href="${env.BUILD_URL}">${env.BUILD_URL}</a> to view the results.</p>
-                            <p>View coverage report at <a href="${env.BUILD_URL}Coverage_Report/">${env.BUILD_URL}Coverage_Report/</a></p>
+            script {
+                emailext(
+                    subject: "\$PROJECT_NAME - Build #\$BUILD_NUMBER - SUCCESS!",
+                    body: """<html>
+                        <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+                            <div style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd;">
+                                <h2 style="color: #28a745; border-bottom: 3px solid #28a745; padding-bottom: 10px;">
+                                    ✓ Build Successful!
+                                </h2>
+                                <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                                    <tr>
+                                        <td style="padding: 8px; font-weight: bold; width: 150px;">Project:</td>
+                                        <td style="padding: 8px;">${env.JOB_NAME}</td>
+                                    </tr>
+                                    <tr style="background-color: #f9f9f9;">
+                                        <td style="padding: 8px; font-weight: bold;">Build Number:</td>
+                                        <td style="padding: 8px;">#${env.BUILD_NUMBER}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px; font-weight: bold;">Status:</td>
+                                        <td style="padding: 8px;"><span style="color: #28a745; font-weight: bold;">SUCCESS</span></td>
+                                    </tr>
+                                    <tr style="background-color: #f9f9f9;">
+                                        <td style="padding: 8px; font-weight: bold;">Duration:</td>
+                                        <td style="padding: 8px;">${currentBuild.durationString.replace(' and counting', '')}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px; font-weight: bold;">Timestamp:</td>
+                                        <td style="padding: 8px;">${new Date()}</td>
+                                    </tr>
+                                </table>
+                                <div style="margin: 20px 0; padding: 15px; background-color: #e7f5e7; border-left: 4px solid #28a745;">
+                                    <p style="margin: 0;"><strong>Changes:</strong></p>
+                                    <ul style="margin: 10px 0;">
+                                        ${getChangeString()}
+                                    </ul>
+                                </div>
+                                <div style="margin: 20px 0;">
+                                    <a href="${env.BUILD_URL}" style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; margin-right: 10px;">View Console Output</a>
+                                    <a href="${env.BUILD_URL}Coverage_Report/" style="display: inline-block; padding: 10px 20px; background-color: #28a745; color: white; text-decoration: none; border-radius: 5px;">View Coverage Report</a>
+                                </div>
+                                <hr style="margin: 20px 0; border: none; border-top: 1px solid #ddd;">
+                                <p style="color: #666; font-size: 12px;">This is an automated message from Jenkins CI/CD Pipeline</p>
+                            </div>
                         </body>
-                    </html>
-                """,
-                mimeType: 'text/html',
-                to: "${env.RECIPIENT_EMAIL}",
-                from: 'jenkins@dvop-bloggers.com',
-                replyTo: 'noreply@dvop-bloggers.com'
-            )
+                    </html>""",
+                    mimeType: 'text/html',
+                    to: 'paperboi1273@gmail.com',
+                    recipientProviders: [
+                        [$class: 'DevelopersRecipientProvider'],
+                        [$class: 'RequesterRecipientProvider']
+                    ]
+                )
+            }
         }
         
         failure {
             echo 'Build failed! Sending failure email...'
-            emailext(
-                subject: "${env.JOB_NAME} - Build #${env.BUILD_NUMBER} - FAILURE!",
-                body: """
-                    <html>
-                        <body>
-                            <h2 style="color: red;">Build Failed! ✗</h2>
-                            <p><strong>Project:</strong> ${env.JOB_NAME}</p>
-                            <p><strong>Build Number:</strong> ${env.BUILD_NUMBER}</p>
-                            <p><strong>Status:</strong> <span style="color: red; font-weight: bold;">FAILURE</span></p>
-                            <p><strong>Duration:</strong> ${currentBuild.durationString}</p>
-                            <p><strong>Started By:</strong> ${currentBuild.getBuildCauses()[0].shortDescription}</p>
-                            <hr>
-                            <p><strong>Failed Stage:</strong> ${env.STAGE_NAME ?: 'Unknown'}</p>
-                            <p><strong>Changes:</strong></p>
-                            <ul>
-                                ${getChangeString()}
-                            </ul>
-                            <hr>
-                            <p style="color: red; font-weight: bold;">Action Required: Please check the build logs and fix the issues.</p>
-                            <p>Check console output at <a href="${env.BUILD_URL}console">${env.BUILD_URL}console</a> to view the full error details.</p>
+            script {
+                emailext(
+                    subject: "\$PROJECT_NAME - Build #\$BUILD_NUMBER - FAILURE!",
+                    body: """<html>
+                        <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+                            <div style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd;">
+                                <h2 style="color: #dc3545; border-bottom: 3px solid #dc3545; padding-bottom: 10px;">
+                                    ✗ Build Failed!
+                                </h2>
+                                <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                                    <tr>
+                                        <td style="padding: 8px; font-weight: bold; width: 150px;">Project:</td>
+                                        <td style="padding: 8px;">${env.JOB_NAME}</td>
+                                    </tr>
+                                    <tr style="background-color: #f9f9f9;">
+                                        <td style="padding: 8px; font-weight: bold;">Build Number:</td>
+                                        <td style="padding: 8px;">#${env.BUILD_NUMBER}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px; font-weight: bold;">Status:</td>
+                                        <td style="padding: 8px;"><span style="color: #dc3545; font-weight: bold;">FAILURE</span></td>
+                                    </tr>
+                                    <tr style="background-color: #f9f9f9;">
+                                        <td style="padding: 8px; font-weight: bold;">Duration:</td>
+                                        <td style="padding: 8px;">${currentBuild.durationString.replace(' and counting', '')}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px; font-weight: bold;">Failed Stage:</td>
+                                        <td style="padding: 8px;">${env.STAGE_NAME ?: 'Unknown'}</td>
+                                    </tr>
+                                </table>
+                                <div style="margin: 20px 0; padding: 15px; background-color: #f8d7da; border-left: 4px solid #dc3545;">
+                                    <p style="margin: 0; color: #721c24;"><strong>⚠ Action Required!</strong></p>
+                                    <p style="margin: 10px 0; color: #721c24;">Please check the build logs and fix the issues immediately.</p>
+                                </div>
+                                <div style="margin: 20px 0; padding: 15px; background-color: #fff3cd; border-left: 4px solid #ffc107;">
+                                    <p style="margin: 0;"><strong>Recent Changes:</strong></p>
+                                    <ul style="margin: 10px 0;">
+                                        ${getChangeString()}
+                                    </ul>
+                                </div>
+                                <div style="margin: 20px 0;">
+                                    <a href="${env.BUILD_URL}console" style="display: inline-block; padding: 10px 20px; background-color: #dc3545; color: white; text-decoration: none; border-radius: 5px;">View Error Logs</a>
+                                </div>
+                                <hr style="margin: 20px 0; border: none; border-top: 1px solid #ddd;">
+                                <p style="color: #666; font-size: 12px;">This is an automated message from Jenkins CI/CD Pipeline</p>
+                            </div>
                         </body>
-                    </html>
-                """,
-                mimeType: 'text/html',
-                to: "${env.RECIPIENT_EMAIL}",
-                from: 'jenkins@dvop-bloggers.com',
-                replyTo: 'noreply@dvop-bloggers.com',
-                attachLog: true
-            )
+                    </html>""",
+                    mimeType: 'text/html',
+                    to: 'paperboi1273@gmail.com',
+                    attachLog: true,
+                    recipientProviders: [
+                        [$class: 'DevelopersRecipientProvider'],
+                        [$class: 'RequesterRecipientProvider']
+                    ]
+                )
+            }
         }
         
         unstable {
             echo 'Build unstable! Sending warning email...'
-            emailext(
-                subject: "${env.JOB_NAME} - Build #${env.BUILD_NUMBER} - UNSTABLE",
-                body: """
-                    <html>
-                        <body>
-                            <h2 style="color: orange;">Build Unstable! ⚠</h2>
-                            <p><strong>Project:</strong> ${env.JOB_NAME}</p>
-                            <p><strong>Build Number:</strong> ${env.BUILD_NUMBER}</p>
-                            <p><strong>Status:</strong> <span style="color: orange; font-weight: bold;">UNSTABLE</span></p>
-                            <p><strong>Duration:</strong> ${currentBuild.durationString}</p>
-                            <hr>
-                            <p>The build completed but some tests may have failed or there are warnings.</p>
-                            <p>Check console output at <a href="${env.BUILD_URL}">${env.BUILD_URL}</a> to view the results.</p>
+            script {
+                emailext(
+                    subject: "\$PROJECT_NAME - Build #\$BUILD_NUMBER - UNSTABLE",
+                    body: """<html>
+                        <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+                            <div style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd;">
+                                <h2 style="color: #ffc107; border-bottom: 3px solid #ffc107; padding-bottom: 10px;">
+                                    ⚠ Build Unstable!
+                                </h2>
+                                <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                                    <tr>
+                                        <td style="padding: 8px; font-weight: bold; width: 150px;">Project:</td>
+                                        <td style="padding: 8px;">${env.JOB_NAME}</td>
+                                    </tr>
+                                    <tr style="background-color: #f9f9f9;">
+                                        <td style="padding: 8px; font-weight: bold;">Build Number:</td>
+                                        <td style="padding: 8px;">#${env.BUILD_NUMBER}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px; font-weight: bold;">Status:</td>
+                                        <td style="padding: 8px;"><span style="color: #ffc107; font-weight: bold;">UNSTABLE</span></td>
+                                    </tr>
+                                    <tr style="background-color: #f9f9f9;">
+                                        <td style="padding: 8px; font-weight: bold;">Duration:</td>
+                                        <td style="padding: 8px;">${currentBuild.durationString.replace(' and counting', '')}</td>
+                                    </tr>
+                                </table>
+                                <div style="margin: 20px 0; padding: 15px; background-color: #fff3cd; border-left: 4px solid #ffc107;">
+                                    <p style="margin: 0; color: #856404;">The build completed but some tests may have failed or there are warnings.</p>
+                                </div>
+                                <div style="margin: 20px 0;">
+                                    <a href="${env.BUILD_URL}" style="display: inline-block; padding: 10px 20px; background-color: #ffc107; color: #333; text-decoration: none; border-radius: 5px;">View Build Details</a>
+                                </div>
+                                <hr style="margin: 20px 0; border: none; border-top: 1px solid #ddd;">
+                                <p style="color: #666; font-size: 12px;">This is an automated message from Jenkins CI/CD Pipeline</p>
+                            </div>
                         </body>
-                    </html>
-                """,
-                mimeType: 'text/html',
-                to: "${env.RECIPIENT_EMAIL}",
-                from: 'jenkins@dvop-bloggers.com',
-                replyTo: 'noreply@dvop-bloggers.com'
-            )
+                    </html>""",
+                    mimeType: 'text/html',
+                    to: 'paperboi1273@gmail.com',
+                    recipientProviders: [
+                        [$class: 'DevelopersRecipientProvider'],
+                        [$class: 'RequesterRecipientProvider']
+                    ]
+                )
+            }
         }
         
         always {
