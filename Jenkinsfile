@@ -220,8 +220,7 @@ pipeline {
         }
         
         always {
-            echo 'Cleaning up workspace...'
-            cleanWs()
+            echo '========== CLEANUP =========='
         }
     }
 }
