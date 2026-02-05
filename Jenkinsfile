@@ -101,9 +101,8 @@ pipeline {
     post {
         success {
             echo 'Build succeeded! Sending success email...'
-            script {
-                emailext(
-                    subject: "\$PROJECT_NAME - Build #\$BUILD_NUMBER - SUCCESS!",
+            emailext(
+                subject: "\$PROJECT_NAME - Build #\$BUILD_NUMBER - SUCCESS!",
                     body: """<html>
                         <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
                             <div style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd;">
@@ -147,17 +146,15 @@ pipeline {
                             </div>
                         </body>
                     </html>""",
-                    mimeType: 'text/html',
-                    to: 'paperboi1273@gmail.com'
-                )
-            }
+                mimeType: 'text/html',
+                to: 'paperboi1273@gmail.com'
+            )
         }
         
         failure {
             echo 'Build failed! Sending failure email...'
-            script {
-                emailext(
-                    subject: "\$PROJECT_NAME - Build #\$BUILD_NUMBER - FAILURE!",
+            emailext(
+                subject: "\$PROJECT_NAME - Build #\$BUILD_NUMBER - FAILURE!",
                     body: """<html>
                         <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
                             <div style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd;">
@@ -204,18 +201,16 @@ pipeline {
                             </div>
                         </body>
                     </html>""",
-                    mimeType: 'text/html',
-                    to: 'paperboi1273@gmail.com',
-                    attachLog: true
-                )
-            }
+                mimeType: 'text/html',
+                to: 'paperboi1273@gmail.com',
+                attachLog: true
+            )
         }
         
         unstable {
             echo 'Build unstable! Sending warning email...'
-            script {
-                emailext(
-                    subject: "\$PROJECT_NAME - Build #\$BUILD_NUMBER - UNSTABLE",
+            emailext(
+                subject: "\$PROJECT_NAME - Build #\$BUILD_NUMBER - UNSTABLE",
                     body: """<html>
                         <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
                             <div style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd;">
@@ -251,10 +246,9 @@ pipeline {
                             </div>
                         </body>
                     </html>""",
-                    mimeType: 'text/html',
-                    to: 'paperboi1273@gmail.com'
-                )
-            }
+                mimeType: 'text/html',
+                to: 'paperboi1273@gmail.com'
+            )
         }
         
         always {
