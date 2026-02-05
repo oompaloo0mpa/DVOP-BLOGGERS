@@ -100,55 +100,23 @@ pipeline {
     
     post {
         success {
-            echo 'Build succeeded! Sending success email...'
+            echo '========== BUILD SUCCEEDED =========='
+            echo 'Attempting to send email notification...'
+            
             emailext(
-                subject: "\$PROJECT_NAME - Build #\$BUILD_NUMBER - SUCCESS!",
-                    body: """<html>
-                        <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
-                            <div style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd;">
-                                <h2 style="color: #28a745; border-bottom: 3px solid #28a745; padding-bottom: 10px;">
-                                    ✓ Build Successful!
-                                </h2>
-                                <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
-                                    <tr>
-                                        <td style="padding: 8px; font-weight: bold; width: 150px;">Project:</td>
-                                        <td style="padding: 8px;">${env.JOB_NAME}</td>
-                                    </tr>
-                                    <tr style="background-color: #f9f9f9;">
-                                        <td style="padding: 8px; font-weight: bold;">Build Number:</td>
-                                        <td style="padding: 8px;">#${env.BUILD_NUMBER}</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding: 8px; font-weight: bold;">Status:</td>
-                                        <td style="padding: 8px;"><span style="color: #28a745; font-weight: bold;">SUCCESS</span></td>
-                                    </tr>
-                                    <tr style="background-color: #f9f9f9;">
-                                        <td style="padding: 8px; font-weight: bold;">Duration:</td>
-                                        <td style="padding: 8px;">${currentBuild.durationString.replace(' and counting', '')}</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding: 8px; font-weight: bold;">Timestamp:</td>
-                                        <td style="padding: 8px;">${new Date()}</td>
-                                    </tr>
-                                </table>
-                                <div style="margin: 20px 0; padding: 15px; background-color: #e7f5e7; border-left: 4px solid #28a745;">
-                                    <p style="margin: 0;"><strong>Changes:</strong></p>
-                                    <ul style="margin: 10px 0;">
-                                        ${getChangeString()}
-                                    </ul>
-                                </div>
-                                <div style="margin: 20px 0;">
-                                    <a href="${env.BUILD_URL}" style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; margin-right: 10px;">View Console Output</a>
-                                    <a href="${env.BUILD_URL}Coverage_Report/" style="display: inline-block; padding: 10px 20px; background-color: #28a745; color: white; text-decoration: none; border-radius: 5px;">View Coverage Report</a>
-                                </div>
-                                <hr style="margin: 20px 0; border: none; border-top: 1px solid #ddd;">
-                                <p style="color: #666; font-size: 12px;">This is an automated message from Jenkins CI/CD Pipeline</p>
-                            </div>
-                        </body>
-                    </html>""",
-                mimeType: 'text/html',
-                to: 'paperboi1273@gmail.com'
+                subject: "Build #${env.BUILD_NUMBER} - SUCCESS",
+                body: """
+                    <h2>Build Successful!</h2>
+                    <p>Project: ${env.JOB_NAME}</p>
+                    <p>Build Number: ${env.BUILD_NUMBER}</p>
+                    <p>Status: SUCCESS</p>
+                    <p><a href="${env.BUILD_URL}">View Build</a></p>
+                """,
+                to: 'paperboi1273@gmail.com',
+                mimeType: 'text/html'
             )
+            
+            echo 'Email notification sent!'
         }
         
         failure {
