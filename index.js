@@ -117,4 +117,4 @@ if (process.env.COVER_INDEX === '1') {
   // do not start server here to avoid interfering with test suite lifecycle
 }
 
-module.exports = { app, server };
+module.exports = { app, server, startServer, reportAddressInfo };

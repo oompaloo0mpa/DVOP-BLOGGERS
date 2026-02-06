@@ -28,7 +28,6 @@
     "body-parser": "^2.2.0",
     "express": "^5.1.0",
     "express-status-monitor": "^1.2.3",
-    "fs": "^0.0.1-security",
     "multer": "^2.0.2",
     "winston": "^3.19.0"
   },

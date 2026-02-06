@@ -1,12 +1,17 @@
 // Mock the 'fs' module so we don't interact with the real file system.
 // Instead, we simulate how readFile, writeFile and rename should behave.
-jest.mock('fs', () => ({
-    promises: {
-        readFile: jest.fn(),
-        writeFile: jest.fn(),
-        rename: jest.fn(),
-    }, mkdirSync: jest.fn(), // mock mkdirSync used by index.js to create upload dir
-}));
+jest.mock('fs', () => {
+    const actualFs = jest.requireActual('fs');
+    return {
+        ...actualFs, // Use real fs methods as fallback for winston
+        promises: {
+            readFile: jest.fn(),
+            writeFile: jest.fn(),
+            rename: jest.fn(),
+        },
+        mkdirSync: jest.fn(), // mock mkdirSync used by index.js to create upload dir
+    };
+});
 
 const fs = require('fs').promises;
 const { addPost } = require('../utils/MatinUtil');
