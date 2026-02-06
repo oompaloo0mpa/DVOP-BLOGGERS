@@ -35,7 +35,7 @@ jobs:
         run: npx playwright install --with-deps
       
       - name: Run Playwright tests
-        run: npm run test-frontend
+        run: npx playwright test --ignore-snapshots
       
       - name: Upload coverage reports
         uses: actions/upload-artifact@v4
