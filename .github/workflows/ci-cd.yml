@@ -1,0 +1,125 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master ]
+
+env:
+  DOCKER_IMAGE: dvops-bloggers-app
+  NODE_VERSION: '18'
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run Jest tests
+        run: npm run test:coverage
+      
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+      
+      - name: Run Playwright tests
+        run: npm run test-frontend
+      
+      - name: Upload coverage reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage-reports
+          path: coverage/
+          retention-days: 30
+      
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
+
+  build:
+    name: Build Docker Image
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.event_name == 'push'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      
+      - name: Build Docker image
+        run: |
+          docker build -t ${{ env.DOCKER_IMAGE }}:${{ github.run_number }} .
+          docker tag ${{ env.DOCKER_IMAGE }}:${{ github.run_number }} ${{ env.DOCKER_IMAGE }}:latest
+      
+      - name: Save Docker image
+        run: docker save ${{ env.DOCKER_IMAGE }}:${{ github.run_number }} | gzip > dvops-bloggers-app.tar.gz
+      
+      - name: Upload Docker image artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: docker-image
+          path: dvops-bloggers-app.tar.gz
+          retention-days: 7
+
+  deploy:
+    name: Deploy to Kubernetes
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Download Docker image
+        uses: actions/download-artifact@v4
+        with:
+          name: docker-image
+      
+      - name: Load Docker image
+        run: docker load < dvops-bloggers-app.tar.gz
+      
+      # Uncomment and configure for actual Kubernetes deployment
+      # - name: Configure kubectl
+      #   uses: azure/k8s-set-context@v3
+      #   with:
+      #     method: kubeconfig
+      #     kubeconfig: ${{ secrets.KUBE_CONFIG }}
+      
+      # - name: Update deployment image
+      #   run: |
+      #     sed -i 's/{{BUILD_NUMBER}}/${{ github.run_number }}/g' deployment.yaml
+      #     kubectl apply -f deployment.yaml
+      #     kubectl apply -f service.yaml
+      
+      # - name: Wait for rollout
+      #   run: kubectl rollout status deployment/dvops-bloggers-deploy --timeout=5m
+      
+      - name: Deployment summary
+        run: |
+          echo "✅ Docker image built: ${{ env.DOCKER_IMAGE }}:${{ github.run_number }}"
+          echo "🚀 Ready for deployment"
+          echo "📝 To deploy manually:"
+          echo "   1. Load image: docker load < dvops-bloggers-app.tar.gz"
+          echo "   2. Update deployment.yaml with BUILD_NUMBER=${{ github.run_number }}"
+          echo "   3. Apply: kubectl apply -f deployment.yaml"
