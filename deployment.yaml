@@ -3,20 +3,18 @@ kind: Deployment
 metadata:
   name: dvops-bloggers-deploy  # Name of the deployment
 spec:
-  replicas: 2  # Always maintain 2 pods
+  replicas: 2 # specifies how many identical replicas (pods) of the application should be maintained, in this case, 2, which means Kubernetes will ensure that two pods running the specified container are always available
   selector:
     matchLabels:
-      app: dvops-bloggers
+      app: dvops-bloggers  # Selector to match pods managed by this deployment
   template:
     metadata:
       labels:
-        app: dvops-bloggers
-      annotations:
-        build-number: "{{BUILD_NUMBER}}"  # Forces a rollout when BUILD_NUMBER changes
+        app: dvops-bloggers  # Labels applied to pods created by this deployment
     spec:
       containers:
-        - name: dvops-bloggers
-          image: dvops-bloggers-app:{{BUILD_NUMBER}}  # Docker image with Jenkins BUILD_NUMBER
-          imagePullPolicy: IfNotPresent  # Use local Minikube image if available
+        - name: dvops-bloggers  # Name of the container
+          image: dvops-bloggers-app:{{BUILD_NUMBER}}  # Docker image to use for the container
+          imagePullPolicy: IfNotPresent   # Do not pull from Docker Hub
           ports:
-            - containerPort: 5050
+            - containerPort: 5050  # Port that the container exposes
