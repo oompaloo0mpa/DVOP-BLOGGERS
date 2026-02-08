@@ -48,35 +48,27 @@
     "createdAt": "2025-01-01T00:00:00.000Z"
   },
   {
-    "title": "Cypress Test Post 1770531868117",
-    "content": "This is test content from Cypress",
-    "imageUrl": "",
-    "owner": "test@example.com",
-    "id": "1770531870307122",
-    "createdAt": "2026-02-08T06:24:30.307Z"
-  },
-  {
-    "title": "Clear Test Post",
-    "content": "Clear test content",
+    "title": "catch-title",
+    "content": "catch-content",
     "imageUrl": "",
     "owner": "",
-    "id": "1770531881281856",
-    "createdAt": "2026-02-08T06:24:41.281Z"
+    "id": "1770557377018969",
+    "createdAt": "2026-02-08T13:29:37.018Z"
   },
   {
-    "title": "Post without owner",
-    "content": "Test content",
+    "title": "hide-catch",
+    "content": "hide-content",
     "imageUrl": "",
     "owner": "",
-    "id": "1770531882935524",
-    "createdAt": "2026-02-08T06:24:42.935Z"
+    "id": "1770557377039429",
+    "createdAt": "2026-02-08T13:29:37.039Z"
   },
   {
-    "title": "  Test with spaces  ",
-    "content": "  Content with spaces  ",
+    "title": "notif-error",
+    "content": "notif-content",
     "imageUrl": "",
-    "owner": "test@example.com",
-    "id": "1770531885718194",
-    "createdAt": "2026-02-08T06:24:45.718Z"
+    "owner": "",
+    "id": "1770557377205793",
+    "createdAt": "2026-02-08T13:29:37.205Z"
   }
 ]
