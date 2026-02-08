@@ -54,7 +54,7 @@ jobs:
           retention-days: 30
 
   build:
-    name: Build Docker Image
+    name: Build and Push to Azure
     runs-on: ubuntu-latest
     needs: test
     if: github.event_name == 'push'
@@ -63,26 +63,23 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-      
-      - name: Build Docker image
-        run: |
-          docker build -t ${{ env.DOCKER_IMAGE }}:${{ github.run_number }} .
-          docker tag ${{ env.DOCKER_IMAGE }}:${{ github.run_number }} ${{ env.DOCKER_IMAGE }}:latest
-      
-      - name: Save Docker image
-        run: docker save ${{ env.DOCKER_IMAGE }}:${{ github.run_number }} | gzip > dvops-bloggers-app.tar.gz
-      
-      - name: Upload Docker image artifact
-        uses: actions/upload-artifact@v4
+      - name: Azure Login
+        uses: azure/login@v1
         with:
-          name: docker-image
-          path: dvops-bloggers-app.tar.gz
-          retention-days: 7
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      
+      - name: Login to Azure Container Registry
+        run: az acr login --name dvopsbloggers
+      
+      - name: Build and push Docker image
+        run: |
+          docker build -t dvopsbloggers.azurecr.io/dvops-bloggers-app:${{ github.run_number }} .
+          docker tag dvopsbloggers.azurecr.io/dvops-bloggers-app:${{ github.run_number }} dvopsbloggers.azurecr.io/dvops-bloggers-app:latest
+          docker push dvopsbloggers.azurecr.io/dvops-bloggers-app:${{ github.run_number }}
+          docker push dvopsbloggers.azurecr.io/dvops-bloggers-app:latest
 
   deploy:
-    name: Deploy to Kubernetes
+    name: Deploy to Azure AKS
     runs-on: ubuntu-latest
     needs: build
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -91,35 +88,28 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       
-      - name: Download Docker image
-        uses: actions/download-artifact@v4
+      - name: Azure Login
+        uses: azure/login@v1
         with:
-          name: docker-image
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
       
-      - name: Load Docker image
-        run: docker load < dvops-bloggers-app.tar.gz
-      
-      # Uncomment and configure for actual Kubernetes deployment
-      # - name: Configure kubectl
-      #   uses: azure/k8s-set-context@v3
-      #   with:
-      #     method: kubeconfig
-      #     kubeconfig: ${{ secrets.KUBE_CONFIG }}
-      
-      # - name: Update deployment image
-      #   run: |
-      #     sed -i 's/{{BUILD_NUMBER}}/${{ github.run_number }}/g' deployment.yaml
-      #     kubectl apply -f deployment.yaml
-      #     kubectl apply -f service.yaml
-      
-      # - name: Wait for rollout
-      #   run: kubectl rollout status deployment/dvops-bloggers-deploy --timeout=5m
-      
-      - name: Deployment summary
+      - name: Set AKS context
         run: |
-          echo "✅ Docker image built: ${{ env.DOCKER_IMAGE }}:${{ github.run_number }}"
-          echo "🚀 Ready for deployment"
-          echo "📝 To deploy manually:"
-          echo "   1. Load image: docker load < dvops-bloggers-app.tar.gz"
-          echo "   2. Update deployment.yaml with BUILD_NUMBER=${{ github.run_number }}"
-          echo "   3. Apply: kubectl apply -f deployment.yaml"
+          az aks get-credentials --resource-group dvops-bloggers-rg --name dvops-cluster --overwrite-existing
+      
+      - name: Update deployment image tag
+        run: |
+          sed -i 's|dvopsbloggers.azurecr.io/dvops-bloggers-app:latest|dvopsbloggers.azurecr.io/dvops-bloggers-app:${{ github.run_number }}|g' deployment-azure.yaml
+      
+      - name: Deploy to AKS
+        run: |
+          kubectl apply -f deployment-azure.yaml
+          kubectl apply -f service-azure.yaml
+      
+      - name: Wait for rollout
+        run: kubectl rollout status deployment/dvops-bloggers-deploy-azure --timeout=5m
+      
+      - name: Get service info
+        run: |
+          echo "🚀 Deployment complete!"
+          kubectl get service dvops-bloggers-service-azure
