@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dvops-bloggers-deploy-azure  # Azure-specific deployment name
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: dvops-bloggers-azure
+  template:
+    metadata:
+      labels:
+        app: dvops-bloggers-azure
+    spec:
+      containers:
+        - name: dvops-bloggers
+          image: dvopsbloggers.azurecr.io/dvops-bloggers-app:latest  # Azure Container Registry image
+          ports:
+            - containerPort: 5050
