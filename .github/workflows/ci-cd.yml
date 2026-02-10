@@ -111,5 +111,5 @@ jobs:
       
       - name: Get service info
         run: |
-          echo "🚀 Deployment complete!"
+          echo "Deployment complete!"
           kubectl get service dvops-bloggers-service-azure
